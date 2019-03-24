@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\categories;
+use App\Categories;
 use App\Http\Requests\ProductRequest;
-use App\images;
-use App\products;
+use App\Images;
+use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminPostsController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $products = Products::all();
+        $products = Products::orderBy('created_at','desc')->get();
         return view('admin.product.index', compact('products'));
 
     }
@@ -33,7 +34,7 @@ class AdminPostsController extends Controller
     {
         //
 
-        $categories = categories::pluck('name','id')->all();
+        $categories = Categories::pluck('name','id')->all();
 
         return view('admin.product.create',compact('categories'));
     }
@@ -48,20 +49,23 @@ class AdminPostsController extends Controller
     {
         //
 
-        $input = $request->all();
-//        $user = Auth::user();
+        $input = $request->except('image_id');
 
-        if ($file=$request->file('image_id')){
+        $user = Auth::user();
 
-            $name = time().$file->getClientOriginalName();
-            $file->move('images',$name);
+        $product = $user->Products()->create($input);
 
-            $photo = images::create(['name'=>$name]);
-            $input['image_id'] = $photo->id;
+        if ($files=$request->file('image_id')){
 
+            foreach ($files as $file) {
+
+                $name = time() . $file->getClientOriginalName();
+                $file->move('images', $name);
+
+                $product->Images()->create(['name' => $name]);
+
+            }
         }
-
-        Products::create($input);
 
 
         return redirect('/admin/product');
@@ -76,6 +80,16 @@ class AdminPostsController extends Controller
     public function show($id)
     {
         //
+
+        $product = Products::findOrFail($id);
+        $number = $product->categories_id;
+        $category = DB::table('categories')->where('id',$number)->first();
+        $image_id = $product->image_id;
+        $image = DB::table('images')->where('id',$image_id)->first();
+
+
+        return view('admin.product.show',compact('product','category','image'));
+
     }
 
     /**

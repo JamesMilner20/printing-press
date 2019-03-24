@@ -4939,8 +4939,8 @@ input[type=button].btn-block {
 
 @media (min-width: 576px) {
   .card-columns {
-    -webkit-column-count: 4;
-            column-count: 4;
+    -webkit-column-count: 3;
+            column-count: 3;
     -webkit-column-gap: 1.25rem;
             column-gap: 1.25rem;
     orphans: 1;
@@ -10658,5 +10658,9 @@ a.text-dark:focus {
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+#admin-page {
+  padding-top: 0px;
 }
 

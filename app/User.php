@@ -50,6 +50,12 @@ class User extends Authenticatable
 
     }
 
+    public function images(){
+
+        return $this->belongsTo('App\Images');
+
+    }
+
 
 
 

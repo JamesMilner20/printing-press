@@ -17,32 +17,28 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.styles([
 
-    'resources/css/bootstrap.min.css',
+    'resources/css/blog-post.css',
     'resources/css/bootstrap.css',
-    'resources/css/jquery-ui.min.css',
-    'resources/css/bootstrap-grid.css',
-    'resources/css/bootstrap-reboot.css',
+    // 'resources/css/font-awesome.css',
     'resources/css/all.min.css',
+    // 'resources/css/metisMenu.css',
+    // 'resources/css/sb-admin-2.css',
+    'resources/css/simple-sidebar.css',
     'resources/css/agency.css',
-    'resources/css/simple-sidebar.css'
     // 'resources/css/styles.css'
 
 ],'public/css/libs.css');
 
 mix.scripts([
 
-    // 'resources/js/jquery.js',
-    // 'resources/js/jquery.slim.min.map',
-    // 'resources/js/jquery.min.map',
+    'resources/js/jquery.js',
     'resources/js/jquery-3.3.1.min.js',
+    'resources/js/popper.js',
+    // 'resources/js/metisMenu.js',
+    // 'resources/js/sb-admin-2.js',
     'resources/js/jquery-ui.js',
-    // 'resources/js/jquery.slim.js',
     'resources/js/bootstrap.js',
-    'resources/js/bootstrap.bundle.min.js',
-    'resources/js/jqBootstrapValidation.js',
-    'resources/js/jquery.easing.min.js'
-    // 'resources/js/agency.js'
-    // 'resources/js/scripts.js'
+    'resources/js/scripts.js'
 
 
 

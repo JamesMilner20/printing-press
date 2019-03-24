@@ -15,9 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('image_id')->index()->unsigned();
-            $table->integer('categories_id')->index()->unsigned();
-            $table->integer('sub_categories_id')->index()->unsigned();
+            $table->integer('user_id')->index()->unsigned()->nullable();
+            $table->integer('categories_id')->unsigned()->index()->nullable();
+            $table->integer('sub_category_id')->unsigned()->index()->nullable();
             $table->string('name');
             $table->string('description');
             $table->timestamps();

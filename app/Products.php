@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class products extends Model
+class Products extends Model
 {
     //
 
@@ -28,13 +28,13 @@ class products extends Model
 
     public function images(){
 
-        return $this->belongsTo('App\images');
+        return $this->belongsToMany('App\Images');
 
     }
 
     public function category(){
 
-        return $this->belongsTo('App\categories');
+        return $this->belongsTo('App\Categories');
 
     }
 

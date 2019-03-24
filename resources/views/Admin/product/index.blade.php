@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layouts.admin')
 
 
 
@@ -17,64 +17,69 @@
 
     </div>
 
-    <table width="100%" class="table table-responsive product-dashboard-table">
-        <thead>
-        <tr>
-            <th>Image</th>
-            <th>Product Title</th>
-            <th class="text-center">Category</th>
-            <th class="text-center">Action</th>
-        </tr>
-        </thead>
-        <tbody>
 
-        @if($products)
+    <div class="col-md-10 offset-md-1 center">
 
-            @foreach($products as $product)
+        <table width="100%" class="table table-responsive product-dashboard-table">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product Title</th>
+                <th class="text-center">Category</th>
+                <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @if($products)
+
+                @foreach($products as $product)
 
 
-                <tr>
+                    <tr>
 
-                    <td class="product-thumb">
-                        @if($product->photo)
-                            <img width="80px" height="auto" src="{{$product->image_id}}" alt="{{$product->name}}">
-                        @else
-                            <p>No Image</p>
-                        @endif
-                    </td>
-                    <td class="product-details">
-                        <h3 class="title">{{$product->name}}</h3>
-                        <span><strong>Posted: </strong><time>{{$product->created_at->diffForHumans()}}</time> </span><br>
-                        <span width="20px" class="status active"><strong>Description: </strong>{{$product->description}}</span><br>
-                    </td>
-                    <td class="product-category"><span class="categories">Laptops</span></td>
-                    <td>
-                        <div class="">
-                            <ul class="justify-content-center">
-                                <li class="list-group-item">
-                                    <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="category.html">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="">
-                                        <i class="fa fa-pen"></i>
-                                    </a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
+                        <td class="product-thumb">
+                            {{--@if($product->images)--}}
+{{--                                <img src="{{$product->images->name}}" alt="{{$product->name}}">--}}
+                            {{--@else--}}
+                                <p>No Image</p>
+                            {{--@endif--}}
+                        </td>
+                        <td class="product-details">
+                            <h3 class="title">{{$product->name}}</h3>
+                            <span><strong>Posted: </strong><time>{{$product->created_at->diffForHumans()}}</time> </span><br>
+                            <span width="20px" class="status active"><strong>Description: </strong>{{$product->description}}</span><br>
+                        </td>
+                        <td class="product-category"><span class="categories">Laptops</span></td>
+                        <td>
+                            <div class="">
+                                <ul class="justify-content-center">
+                                    <li class="list-group-item">
+                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
 
-        @endif
+            @endif
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+    </div>
 
 @stop

@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layouts.admin')
 
 
 
@@ -38,7 +38,7 @@
 
                         <div class="form-group">
                             {!! Form::label('image_id','Product Image') !!}
-                            {!! Form::file('image_id',null, ['class'=>'form-control']) !!}
+                            {!! Form::file('image_id[]', ['roles'=>'form','multiple'=>'multiple','class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group">
