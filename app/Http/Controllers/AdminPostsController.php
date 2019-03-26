@@ -9,6 +9,7 @@ use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AdminPostsController extends Controller
 {
@@ -48,7 +49,6 @@ class AdminPostsController extends Controller
     public function store(ProductRequest $request)
     {
         //
-
         $input = $request->except('image_id');
 
         $user = Auth::user();
@@ -60,13 +60,14 @@ class AdminPostsController extends Controller
             foreach ($files as $file) {
 
                 $name = time() . $file->getClientOriginalName();
+
                 $file->move('images', $name);
 
                 $product->Images()->create(['name' => $name]);
 
             }
-        }
 
+        }
 
         return redirect('/admin/product');
     }
@@ -84,11 +85,11 @@ class AdminPostsController extends Controller
         $product = Products::findOrFail($id);
         $number = $product->categories_id;
         $category = DB::table('categories')->where('id',$number)->first();
-        $image_id = $product->image_id;
-        $image = DB::table('images')->where('id',$image_id)->first();
+//        $image_id = $product->id;
+//        $images = DB::table('images')->where('id',$image_id);
 
 
-        return view('admin.product.show',compact('product','category','image'));
+        return view('admin.product.show',compact('product','category','images'));
 
     }
 
@@ -101,6 +102,11 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         //
+        $product = Products::findOrFail($id);
+
+        $categories = Categories::pluck('name','id')->all();
+
+        return view('admin.product.edit',compact('categories','product'));
     }
 
     /**
@@ -113,6 +119,27 @@ class AdminPostsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $input = $request->except('image_id');
+
+        $product = Products::findOrFail($id);
+
+        if ($files=$request->file('image_id')){
+
+            foreach ($files as $file) {
+
+                $name = time() . $file->getClientOriginalName();
+
+                $file->move('images', $name);
+
+                $product->Images()->create(['name' => $name]);
+
+            }
+
+        }
+        Auth::user()->products()->whereId($id)->first()->update($input);
+
+        return redirect('/admin/product');
     }
 
     /**
@@ -124,5 +151,16 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+
+        $product = Products::findOrFail($id);
+
+        unlink(public_path().$product->Images->name);
+
+        $product->delete();
+
+        Session::flash('deleted_user','The User has been Deleted');
+
+        return redirect('/admin/product');
+
     }
 }

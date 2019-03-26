@@ -21,8 +21,9 @@ mix.styles([
     'resources/css/bootstrap.css',
     // 'resources/css/font-awesome.css',
     'resources/css/all.min.css',
-    // 'resources/css/metisMenu.css',
-    // 'resources/css/sb-admin-2.css',
+    'resources/css/owl.carousel.css',
+    'resources/css/owl.carousel.min.css',
+    'resources/css/owl.theme.default.min.css',
     'resources/css/simple-sidebar.css',
     'resources/css/agency.css',
     // 'resources/css/styles.css'
@@ -31,11 +32,11 @@ mix.styles([
 
 mix.scripts([
 
-    'resources/js/jquery.js',
     'resources/js/jquery-3.3.1.min.js',
+    'resources/js/jquery.js',
+    'resources/js/owl.carousel.js',
+    'resources/js/owl.carousel.min.js',
     'resources/js/popper.js',
-    // 'resources/js/metisMenu.js',
-    // 'resources/js/sb-admin-2.js',
     'resources/js/jquery-ui.js',
     'resources/js/bootstrap.js',
     'resources/js/scripts.js'

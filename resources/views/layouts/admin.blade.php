@@ -9,22 +9,16 @@
 
     <title>{{ config('app.name', 'Printing Press') }}</title>
 
+
+
     <!-- Fonts -->
 {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">--}}
 
     <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-        <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
-
-
-    <!-- Scripts -->
-        {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-
-        <script src="{{ asset('js/libs.js') }}" defer></script>
-
-
+        <link href="{{ mix('css/libs.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -133,14 +127,19 @@
 
 </div>
 
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
+<!-- Scripts -->
+{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+
+<script src="{{ asset('js/libs.js')}}" defer></script>
 
 
+@yield('personal-js')
 
 </body>
+
+
+
+
+
+
 </html>

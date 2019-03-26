@@ -14,6 +14,12 @@
     {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
     {{--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
     {{--</form>--}}
+        @if(Session::has('deleted_user'))
+
+            <p>{{session('deleted_user')}}</p>
+
+        @endif
+
 
     </div>
 
@@ -46,7 +52,11 @@
                             {{--@endif--}}
                         </td>
                         <td class="product-details">
-                            <h3 class="title">{{$product->name}}</h3>
+                            <h3 class="title">
+                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
+                                    {{$product->name}}
+                                </a>
+                                </h3>
                             <span><strong>Posted: </strong><time>{{$product->created_at->diffForHumans()}}</time> </span><br>
                             <span width="20px" class="status active"><strong>Description: </strong>{{$product->description}}</span><br>
                         </td>
@@ -60,13 +70,8 @@
                                         </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="">
+                                        <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('product.edit',$product->id)}}">
                                             <i class="fa fa-pen"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="">
-                                            <i class="fa fa-trash"></i>
                                         </a>
                                     </li>
                                 </ul>
