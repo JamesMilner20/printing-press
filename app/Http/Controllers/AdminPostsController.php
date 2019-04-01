@@ -124,13 +124,15 @@ class AdminPostsController extends Controller
 
         $product = Products::findOrFail($id);
 
+        $product->images()->delete();
+
         if ($files=$request->file('image_id')){
 
             foreach ($files as $file) {
 
                 $name = time() . $file->getClientOriginalName();
 
-                $file->move('images', $name);
+                $file->move('images/prod', $name);
 
                 $product->Images()->create(['name' => $name]);
 
@@ -154,11 +156,13 @@ class AdminPostsController extends Controller
 
         $product = Products::findOrFail($id);
 
-        unlink(public_path().$product->Images->name);
+//        unlink(public_path().$product->Images->name);
+
+        $product->images()->delete();
 
         $product->delete();
 
-        Session::flash('deleted_user','The User has been Deleted');
+        Session::flash('deleted_user',$product->name.' has been Deleted');
 
         return redirect('/admin/product');
 

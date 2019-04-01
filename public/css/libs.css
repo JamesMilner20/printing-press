@@ -4761,7 +4761,7 @@ input[type="button"].btn-block {
     column-count: 4;
     -webkit-column-gap: 0.25rem;
     -moz-column-gap: 0.25rem;
-    column-gap: 0.25rem;
+    column-gap: 4rem;
     orphans: 1;
     widows: 1;
   }

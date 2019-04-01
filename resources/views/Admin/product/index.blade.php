@@ -2,13 +2,23 @@
 
 
 
+@section('navButton')
+
+    {{--<button  class="btn btn-secondary btn-sm mr-2" <span class="sr-only">(current)</span></button>--}}
+    <li class="nav-item">
+        <a class="btn btn-secondary btn-sm mr-2" href="{{route('product.create')}}">Add Item<span class="sr-only">(current)</span></a>
+    </li>
+
+
+@stop
+
+
+
 @section('content')
 
     <h1>Admin View</h1>
 
     <div class="panel">
-
-    <a href="{{'product/create'}}" class="btn btn-info">Add Product</a>
 
     {{--<form class="form-inline my-2 my-lg-0">--}}
     {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
@@ -46,7 +56,7 @@
 
                         <td class="product-thumb">
                             {{--@if($product->images)--}}
-{{--                                <img src="{{$product->images->name}}" alt="{{$product->name}}">--}}
+                                {{--<img src="{{$product->images->name}}" alt="{{$product->name}}">--}}
                             {{--@else--}}
                                 <p>No Image</p>
                             {{--@endif--}}
