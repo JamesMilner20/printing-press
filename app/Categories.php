@@ -16,4 +16,11 @@ class Categories extends Model
 
     ];
 
+    public function product(){
+
+        return $this->belongsTo('App\Products');
+
+    }
+
+
 }

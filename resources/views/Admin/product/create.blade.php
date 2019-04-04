@@ -31,6 +31,8 @@
 
                         </div>
 
+                        <input type="hidden" name="is_active" value="1">
+
                         <div class="form-group">
                             {!! Form::label('categories_id','category') !!}
                             {!! Form::select('categories_id',[''=>'category']+$categories,null,['class'=>'form-control']) !!}

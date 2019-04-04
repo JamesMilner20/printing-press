@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\comments;
 use App\Http\Requests\ProductRequest;
 use App\Images;
 use App\Products;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 
 class AdminPostsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +24,10 @@ class AdminPostsController extends Controller
     {
         //
         $products = Products::orderBy('created_at','desc')->get();
-        return view('admin.product.index', compact('products'));
+
+        $categories = Categories::all();
+
+        return view('admin.product.index', compact('products','categories'));
 
     }
 
@@ -139,7 +144,7 @@ class AdminPostsController extends Controller
             }
 
         }
-        Auth::user()->products()->whereId($id)->first()->update($input);
+        $product->update($input);
 
         return redirect('/admin/product');
     }
@@ -167,4 +172,22 @@ class AdminPostsController extends Controller
         return redirect('/admin/product');
 
     }
+
+
+    public function posts($id)
+    {
+
+        $product = Products::findOrFail($id);
+
+        $comments = $product->comments()->whereId(1)->get();
+//
+        $replies = DB::table('comment_replies')->get();
+
+        return view('posts',compact('product','comments','replies'));
+
+
+
+    }
+
+
 }

@@ -22,6 +22,20 @@
 
 @stop
 
+@section('custom')
+
+    <style>
+        /*.card-body{*/
+        /*height: 540px;*/
+        /*}*/
+
+
+    </style>
+
+
+    @stop
+
+
 @section('content')
 
     <div class="panel">
@@ -39,62 +53,74 @@
 
     </div>
 
-    <div class="card-columns">
-        @if($join)
+    @if($join)
 
-            @foreach($users as $user)
+        @foreach($users as $user)
 
-                <div class="card text-center bg-info" >
-                        <img src="" alt="" class="profile"/>
-                    <div class="card-body pt-5 bg-light">
-                        @if($user->image_id)
-                            @foreach($join as $image)
-                                @if($image->id == $user->id)
-                                <img height="100px" class="img-thumbnail img-responsive" src="{{'/images/profile_images/'.$image->name}}" alt="Card image cap">
-                                @endif
-                            @endforeach
-                        @else
-                            <p>No Image</p>
-                        @endif
-                        <h5 class="card-title">
-                            <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('users.show',$user->id)}}">
-                                {{$user->name}}
-                            </a>
-                        </h5>
-                        <p class="card-text text-justify">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="btn-group-vertical">
-                            <ul class="list-group list-group-flush text-left">
-                                @if($products)
-                                    @foreach($products as $product)
-                                        @if($user->id == $product->user_id)
-                                            <a type="button" class="btn-secondary small m-0 p-1"  href="{{route('product.show',$product->id)}}">
-                                                <span class="col-9">{{$product->name}}</span>
-                                                <span class="col-3">{{$product->created_at->diffForHumans()}}</span>
-                                            </a>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </ul>
+
+
+            <div class="card mb-3">
+                <div class="card-body pt-5 m-0 bg-light">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="text-center col-md-12 m-0">
+                            @if($user->image_id)
+                                @foreach($join as $image)
+                                    @if($image->id == $user->id)
+                                        <img height="150px" class="img-responsive rounded" src="{{'/images/profile_images/'.$image->name}}" alt="Card image cap">
+                                    @endif
+                                @endforeach
+                            @else
+                                <p>No Image</p>
+                            @endif
+                                </div>
+                            </div>
                         </div>
-                        <a href="{{route('users.show',$user->id)}}" class="card-link">View More</a>
-                        <br>
-                        @if($user->facebook)
-                            <a href="{{$user->facebook}}" class="btn btn-just-icon btn-link btn-dribbble"><i class="fab fa-facebook"></i></a>
-                        @endif
-                        @if($user->twitter)
-                            <a href="{{$user->twitter}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fab fa-twitter"></i></a>
-                        @endif
-                        @if($user->pinterest)
-                            <a href="{{$user->pinterest}}" class="btn btn-just-icon btn-link btn-pinterest"><i class="fab fa-pinterest"></i></a>
-                        @endif
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('users.show',$user->id)}}">
+                                        {{$user->name}}
+                                    </a>
+                                </h5>
+                                <p class="card-text text-justify">{{$user->summary}}</p>
+                                <div class="btn-group-vertical">
+                                    <ul class="list-group list-group-flush text-left col-md-12">
+                                        @if($products)
+                                            @foreach($products as $product)
+                                                @if($user->id == $product->user_id)
+                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('admin.product.show',$product->id)}}">
+                                                        <div class="row">
+                                                            <span class="col-7">{{$product->name}}</span>
+                                                            <span class="col-5">{{$product->created_at->diffForHumans()}}</span>
+                                                        </div>
+                                                    </a>
+
+                                                @endif
+                                            @endforeach
+
+                                        @endif
+                                    </ul>
+                                </div>
+                                <br>
+                                @if($user->facebook)
+                                    <a href="{{$user->facebook}}" class="btn btn-just-icon btn-link btn-dribbble"><i class="fab fa-facebook"></i></a>
+                                @endif
+                                @if($user->twitter)
+                                    <a href="{{$user->twitter}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fab fa-twitter"></i></a>
+                                @endif
+                                @if($user->pinterest)
+                                    <a href="{{$user->pinterest}}" class="btn btn-just-icon btn-link btn-pinterest"><i class="fab fa-pinterest"></i></a>
+                                @endif
+                                {{--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-
-            @endforeach
-        @endif
-    </div>
-
-
-
+            </div>
+        @endforeach
+    @endif
 
 @stop

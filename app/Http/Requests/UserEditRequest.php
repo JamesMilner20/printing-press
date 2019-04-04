@@ -31,6 +31,7 @@ class UserEditRequest extends FormRequest
             'role_id'=>'required',
             'isActive'=>'required',
             'image_id'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'summary'=>'max:100'
 
         ];
     }

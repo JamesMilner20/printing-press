@@ -14,7 +14,8 @@ class Products extends Model
         'sub-categories_id',
         'image_id',
         'name',
-        'description'
+        'description',
+        'is_active',
 
 
     ];
@@ -37,6 +38,12 @@ class Products extends Model
         return $this->belongsTo('App\Categories');
 
     }
+
+    public function comments(){
+
+        return $this->hasMany('App\comments');
+    }
+
 
 
 

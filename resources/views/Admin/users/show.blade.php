@@ -21,18 +21,24 @@
 <div class="page-header header-filter" data-parallax="true" style="background-color: black;"></div>
 <div class="main">
     <div class="profile-content">
-        <div class="container text-center">
+        <div class="container ">
             <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="text-center">
-                        <div class="avatar">
+                <div class="col-md-12 text-center">
+
                             @if($user->image_id)
                                 @foreach($join as $image)
-                            <img src="{{'/images/profile_images/'.$image->name}}" alt="image of {{$user->name}}" class="main main-raised img-thumbnail rounded-circle img-fluid">
+                            <img src="{{'/images/profile_images/'.$image->name}}" alt="image of {{$user->name}}" height="150px" class="rounded img-responsive main main-raised rounded-circle">
                                 @endforeach
                             @endif
-                        </div>
-                        <div class="name ">
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+
+                <div class="name text-center">
                             <h3 class="title">{{$user->name}}</h3>
                             <h6>{{$user->profession ? $user->profession : 'Profession unset'}}</h6>
 
@@ -47,7 +53,6 @@
                             @endif
 
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="description text-center">

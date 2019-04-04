@@ -19,7 +19,7 @@
                             </div>
                             <div class="col-4">
                                 <ul class="list-inline mt-20">
-                                    <li class="list-inline-item"><a href="{{route('product.edit',$product->id)}}" class="btn btn-secondary">Edit Product</a></li>
+                                    <li class="list-inline-item"><a href="{{route('admin.product.edit',$product->id)}}" class="btn btn-secondary">Edit Product</a></li>
                                 </ul>
                             </div>
                         </div>

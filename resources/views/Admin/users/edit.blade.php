@@ -32,7 +32,7 @@
                 <a  class="pull-right">
                     @if($user->image_id)
                         @foreach($join as $image)
-                            <img src="{{'/images/profile_images/'.$image->name}}"height="100" title="profile image" alt="image of {{$user->name}}" class="rounded img-responsive">
+                            <img src="{{'/images/profile_images/'.$image->name}}"height="100" class="rounded img-responsive" title="profile image" alt="image of {{$user->name}}" >
                         @endforeach
                         @else
                         <p>No Image</p>

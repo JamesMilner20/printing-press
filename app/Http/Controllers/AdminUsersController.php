@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminUsersController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +25,7 @@ class AdminUsersController extends Controller
 
         $users = User::orderBy('created_at','desc')->get();
 
-        $products = Products::orderBy('created_at','desc')->paginate(3);
+        $products = Products::orderBy('created_at','desc')->paginate(4);
 
         $join = DB::table('users')->join('images', 'users.image_id', '=', 'images.id')
             ->select( 'images.name','users.id')->get();
@@ -59,10 +60,6 @@ class AdminUsersController extends Controller
         //
 
         $input = $request->all();
-
-        trim($request->password);
-
-        $input['password'] = bcrypt($request->password);
 
         if($file=$request->file('image_id')){
 

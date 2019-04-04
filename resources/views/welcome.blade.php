@@ -43,27 +43,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ml-auto">
-                        {{--<li class="nav-item active">--}}
-                            {{--<a class="nav-link btn btn-outline-info my-2 my-sm-0" href="#">Home <span class="sr-only">(current)</span></a>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item">--}}
-                            {{--<a class="nav-link btn btn-outline-info my-2 my-sm-0" href="#">Link</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item dropdown">--}}
-                            {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                                {{--Dropdown--}}
-                            {{--</a>--}}
-                            {{--<div class="dropdown-menu btn btn-outline-info my-2 my-sm-0" aria-labelledby="navbarDropdown">--}}
-                                {{--<a class="dropdown-item btn-light" href="#">Action</a>--}}
-                                {{--<a class="dropdown-item btn-light" href="#">Another action</a>--}}
-                                {{--<div class="dropdown-divider "></div>--}}
-                                {{--<a class="dropdown-item btn-light" href="#">Something else here</a>--}}
-                            {{--</div>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item">--}}
-                            {{--<a class="nav-link disabled btn-outline-info my-2 my-sm-0" href="#">Disabled</a>--}}
-                        {{--</li>--}}
-
                         @if (Route::has('login'))
                             @auth
                             <li class="nav-item"><a class="nav-link btn btn-outline-info my-2 my-sm-0" href="{{ url('/home') }}">Home</a></li>

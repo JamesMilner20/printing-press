@@ -44,27 +44,28 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th class="text-center">Action</th>
-                        <th scope="col">Created Date</th>
+                        {{--<th scope="col">Created Date</th>--}}
                     </tr>
                     </thead>
 
                     <tbody>
+                    <?php $number = 1 ?>
                     @foreach($categories as $category)
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td><a href="{{route('category.edit',$category->id)}}">{{$category->name}}</a></td>
+                            <td>{{$number++}}</td>
+                            <td><a href="{{route('category.show',$category->id)}}">{{$category->name}}</a></td>
                             <td>
                                 <div class="">
-                                    <ul class="justify-content-center">
-                                        <li class="list-group-item">
+                                    <ul class="list-inline text-lg-center">
+                                        <li class="list-inline-item">
                                             <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('category.show',$category->id)}}">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="list-inline-item">
                                             <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('category.edit',$category->id)}}">
                                                 <i class="fa fa-pen"></i>
                                             </a>

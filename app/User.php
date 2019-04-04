@@ -39,9 +39,7 @@ class User extends Authenticatable
 
 
     public function role(){
-
         return $this->belongsTo('App\Role');
-
     }
 
     public function products(){
@@ -50,10 +48,29 @@ class User extends Authenticatable
 
     }
 
-    public function images(){
-
+    public function image(){
         return $this->belongsTo('App\Images');
+    }
 
+
+    public function isAdmin(){
+        if($this->role->name == "Admin" && $this->isActive == 1){
+            return true;
+
+        }
+
+        return false;
+    }
+
+    public function isPartner(){
+
+        if($this->role->name == "Partner" && $this->isActive == 1){
+
+            return true;
+
+        }
+
+        return false;
     }
 
 
