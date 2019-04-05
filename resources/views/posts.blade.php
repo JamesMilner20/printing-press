@@ -71,7 +71,7 @@
 
                             @foreach($replies as $reply)
 
-                                @if($reply->comment_id == $comment->id)
+                                @if($reply->comments_id == $comment->id)
 
                                     @if($reply->is_active == 1)
 
@@ -96,7 +96,7 @@
 
                                     {!! Form::open(['method'=>'POST','action'=>'CommentsRepliesController@createReply']) !!}
 
-                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                        <input type="hidden" name="comments_id" value="{{$comment->id}}">
 
                                         <div class="form-group">
                                             {!! Form::label('body','Body:') !!}
@@ -118,7 +118,7 @@
 
                                     {!! Form::open(['method'=>'POST','action'=>'CommentsRepliesController@createReply']) !!}
 
-                                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                    <input type="hidden" name="comments_id" value="{{$comment->id}}">
 
                                     <div class="form-group">
                                         {!! Form::label('body') !!}
@@ -152,7 +152,7 @@
 
                 {!! Form::open(['method'=>'POST','action'=>'PostsCommentsController@store']) !!}
 
-                <input type="hidden" name="product_id" value="{{$product->id}}">
+                <input type="hidden" name="products_id" value="{{$product->id}}">
 
                 <div class="form-group">
                     {!! Form::label('body','Body') !!}

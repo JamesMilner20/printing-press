@@ -49,7 +49,7 @@ class CommentsRepliesController extends Controller
 
         $data = [
 
-            'comment_id' => $request->comment_id,
+            'comments_id' => $request->comments_id,
             'author'=> $user->name,
             'email'=>$user->email,
             'photo'=>$user->image->name,
@@ -79,7 +79,9 @@ class CommentsRepliesController extends Controller
 
         $comment = comments::findOrfail($id);
 
-        $replies = DB::table('comment_replies')->where('comment_id',$comment->id)->get();
+//        $replies = DB::table('comment_replies')->where('comments_id',$comment->id)->get();
+
+        $replies = $comment->replies;
 
         return view('admin.comments.replies.show',compact('replies','comment'));
 

@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('product_id')->index();
+            $table->unsignedBigInteger('products_id')->index();
             $table->integer('is_active')->default(0);
             $table->string('author');
             $table->string('photo');
@@ -26,7 +26,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

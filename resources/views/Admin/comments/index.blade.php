@@ -21,7 +21,7 @@
             <td>{{$comment->author}}</td>
             <td>{{$comment->email}}</td>
             <td>{{$comment->body}}</td>
-            <td><a href="{{route('home.post',$comment->product->id)}}">View Post</a></td>
+            <td><a href="{{route('home.post',$comment->products_id)}}">View Post</a></td>
             <td><a href="{{route('replies.show',$comment->id)}}">View Replies</a></td>
 
             <td>

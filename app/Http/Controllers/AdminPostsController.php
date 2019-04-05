@@ -179,9 +179,11 @@ class AdminPostsController extends Controller
 
         $product = Products::findOrFail($id);
 
-        $comments = $product->comments()->whereId(1)->get();
+        $comments = $product->comments()->whereIsActive(1)->get();
 //
         $replies = DB::table('comment_replies')->get();
+
+//        $replies = dd($comments->replies)->whereIsActive(1)->get();
 
         return view('posts',compact('product','comments','replies'));
 

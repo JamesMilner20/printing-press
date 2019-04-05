@@ -23,7 +23,7 @@
                     <td>{{$reply->author}}</td>
                     <td>{{$reply->email}}</td>
                     <td>{{$reply->body}}</td>
-                    <td><a href="{{route('home.post',$comment->id)}}">View Post</a></td>
+                    <td><a href="{{route('home.post',$reply->comment->product->id)}}">View Post</a></td>
 
                     <td>
 

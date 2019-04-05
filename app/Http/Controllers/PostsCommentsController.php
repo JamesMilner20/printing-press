@@ -48,7 +48,7 @@ class PostsCommentsController extends Controller
 
         $data = [
 
-            'product_id' => $request->product_id,
+            'products_id' => $request->products_id,
             'author'=> $user->name,
             'email'=>$user->email,
             'photo'=>$user->image->name,

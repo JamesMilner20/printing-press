@@ -16,6 +16,7 @@ class Products extends Model
         'name',
         'description',
         'is_active',
+        'user_id'
 
 
     ];
@@ -41,7 +42,7 @@ class Products extends Model
 
     public function comments(){
 
-        return $this->hasMany('App\comments');
+        return $this->hasMany('App\Comments');
     }
 
 

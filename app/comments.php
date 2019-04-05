@@ -10,7 +10,7 @@ class comments extends Model
 
     protected $fillable = [
 
-        'product_id',
+        'products_id',
         'is_active',
         'author',
         'photo',
@@ -19,14 +19,14 @@ class comments extends Model
 
     ];
 
-    public function relies(){
+    public function replies(){
         return $this->hasMany('App\commentReplies');
 
     }
 
 
     public function product(){
-        return $this->belongsTo('App\Products');
+        return $this->belongsTo('App\Products','products_id');
 
     }
 

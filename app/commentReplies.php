@@ -10,7 +10,7 @@ class commentReplies extends Model
 
     protected $fillable = [
 
-        'comment_id',
+        'comments_id',
         'is_active',
         'author',
         'photo',
@@ -21,7 +21,7 @@ class commentReplies extends Model
 
     public function comment(){
 
-        return $this->belongsTo('App\comments');
+        return $this->belongsTo('App\comments', 'comments_id');
 
     }
 
