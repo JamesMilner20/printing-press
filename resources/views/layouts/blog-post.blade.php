@@ -31,7 +31,7 @@
 <div id="app">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark" role="navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark border-bottom" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-top-links">
@@ -45,8 +45,8 @@
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse btn-group" id="navbarSupportedContent">
-                <ul class="nav navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center">
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -76,7 +76,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

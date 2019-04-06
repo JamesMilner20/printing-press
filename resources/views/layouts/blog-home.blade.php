@@ -24,6 +24,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 
 <body>
@@ -189,13 +190,16 @@
 
     </div>
 
+
 </div>
 <!-- /.container -->
 
 <!-- Scripts -->
+<script src="{{ asset('js/libs.js')}}" defer></script>
+
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<script src="{{ asset('js/libs.js')}}" defer></script>
+
 
 
 </body>

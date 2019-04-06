@@ -56,6 +56,8 @@ Route::group(['middleware'=>'partner'], function(){
 
     Route::resource('partner/products', 'PartnerPostsController');
 
+    Route::resource('users/partner', 'UserPartnerController');
+
 });
 
 

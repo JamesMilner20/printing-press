@@ -5,9 +5,9 @@
 @section('navButton')
 
     {{--<button  class="btn btn-secondary btn-sm mr-2" <span class="sr-only">(current)</span></button>--}}
-    <li class="nav-item">
-        <a class="btn btn-secondary btn-sm mr-2" href="{{route('admin.product.create')}}">Add Item<span class="sr-only">(current)</span></a>
-    </li>
+    {{--<li class="nav-item">--}}
+        <a class="btn btn-secondary btn-sm border-white" href="{{route('admin.product.create')}}">Add Item<span class="sr-only">(current)</span></a>
+    {{--</li>--}}
 
 
 @stop

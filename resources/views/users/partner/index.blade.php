@@ -1,22 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.partner')
 
 @section('navButton')
-
-
-    {{--<li class="nav-item">--}}
-        <a class="btn btn-secondary btn-sm border-white" href="{{route('users.create')}}">Create User<span class="sr-only">(current)</span></a>
-    {{--</li>--}}
-         {{--<li class="nav-item dropdown">--}}
-            {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                {{--Dropdown--}}
-            {{--</a>--}}
-            {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-                {{--<a class="dropdown-item" href="#">Action</a>--}}
-                {{--<a class="dropdown-item" href="#">Another action</a>--}}
-                {{--<div class="dropdown-divider"></div>--}}
-                {{--<a class="dropdown-item" href="#">Something else here</a>--}}
-            {{--</div>--}}
-        {{--</li>--}}
 
 
 
@@ -58,7 +42,6 @@
         @foreach($users as $user)
 
 
-
             <div class="card mb-3">
                 <div class="card-body pt-5 m-0 bg-light">
                     <div class="row ">
@@ -80,7 +63,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('users.show',$user->id)}}">
+                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('partner.show',$user->id)}}">
                                         {{$user->name}}
                                     </a>
                                 </h5>
@@ -90,7 +73,7 @@
                                         @if($products)
                                             @foreach($products as $product)
                                                 @if($user->id == $product->user_id)
-                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('admin.product.show',$product->id)}}">
+                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('products.show',$product->id)}}">
                                                         <div class="row">
                                                             <span class="col-7">{{$product->name}}</span>
                                                             <span class="col-5">{{$product->created_at->diffForHumans()}}</span>

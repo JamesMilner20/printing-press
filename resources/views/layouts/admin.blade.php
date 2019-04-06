@@ -10,15 +10,14 @@
     <title>{{ config('app.name', 'Printing Press') }}</title>
 
 
-
     <!-- Fonts -->
 {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">--}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('custom')
 
@@ -48,48 +47,42 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
 
+                <div class="container">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="btn btn-info btn-sm mr-2" id="menu-toggle">Toggle Menu</a>
-                        </li>
+                    <ul class="nav mt-2 mt-lg-0 btn-group" role="group">
+                        {{--<li class="nav-item">--}}
+                        <a class="btn btn-info btn-sm border-white" id="menu-toggle">Toggle Menu</a>
+                        <a class="btn btn-info btn-sm border-white" href="{{route('home')}}">Home</a>
+
+                        {{--</li>--}}
                             @yield('navButton')
-                    </ul>
-                </div>
+                    {{--</ul>--}}
+                {{--</div>--}}
+
+                {{--<div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
 
 
-
-
-
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-                    <ul class="navbar-nav ml-auto text-center">
+                    {{--<ul class="navbar-nav ml-auto text-center">--}}
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="btn btn-secondary btn-sm border-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="btn btn-secondary btn-sm border-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                         @else
                             <li class="nav-item dropdown text-center">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="btn btn-secondary btn-sm border-white nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -108,7 +101,7 @@
                             </li>
                             @endguest
                     </ul>
-
+                </div>
                 </div>
             </nav>
 
@@ -171,9 +164,9 @@
 </div>
 
 <!-- Scripts -->
-{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+<script src="{{ asset('js/libs.js')}}"></script>
 
-<script src="{{ asset('js/libs.js')}}" defer></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 
 
 @yield('personal-js')

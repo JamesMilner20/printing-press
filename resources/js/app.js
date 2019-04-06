@@ -30,10 +30,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
+
+$(document).ready(function(){
+    myFunction();
 });
 
+function myFunction() {
+
+    $(".owl-carousel").owlCarousel();
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+}
 
 
 
