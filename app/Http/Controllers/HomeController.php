@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
+use App\Http\Requests\HomeSearchRequest;
 use App\Products;
+use App\User;
 use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
 
 class HomeController extends Controller
 {
@@ -17,6 +21,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
      * Show the application dashboard.
      *
@@ -24,7 +29,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Products::all();
-        return view('home',compact('products'));
+        $products = Products::whereIsActive(1)->orderBy('created_at','desc')->get();
+
+        $categories = Categories::all();
+
+        return view('home',compact('products','categories'));
     }
+
+    public function search(HomeSearchRequest $request)
+    {
+        $searchResults = (new Search())
+            ->registerModel(Products::class, 'name')
+            ->registerModel(User::class, 'name')
+            ->perform($request->input('query'));
+
+        return view('search', compact('searchResults'));
+    }
+
+
+
 }

@@ -137,7 +137,7 @@ class AdminPostsController extends Controller
 
                 $name = time() . $file->getClientOriginalName();
 
-                $file->move('images/prod', $name);
+                $file->move('images', $name);
 
                 $product->Images()->create(['name' => $name]);
 
@@ -183,9 +183,11 @@ class AdminPostsController extends Controller
 //
         $replies = DB::table('comment_replies')->get();
 
+        $categories = Categories::all();
+
 //        $replies = dd($comments->replies)->whereIsActive(1)->get();
 
-        return view('posts',compact('product','comments','replies'));
+        return view('posts',compact('product','comments','replies','categories'));
 
 
 

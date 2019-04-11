@@ -31,20 +31,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 
-$(document).ready(function(){
-    myFunction();
-});
 
-function myFunction() {
 
     $(".owl-carousel").owlCarousel();
+
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-}
-
 
 
 

@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Products extends Model
+class Products extends Model implements Searchable
 {
     //
 
@@ -34,7 +36,7 @@ class Products extends Model
 
     }
 
-    public function category(){
+    public function categories(){
 
         return $this->belongsTo('App\Categories');
 
@@ -43,6 +45,17 @@ class Products extends Model
     public function comments(){
 
         return $this->hasMany('App\Comments');
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('home.post', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+        );
     }
 
 

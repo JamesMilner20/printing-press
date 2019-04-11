@@ -25,20 +25,20 @@ mix.styles([
     'resources/css/simple-sidebar.css',
     // 'resources/css/sb-admin-2.css',
     'resources/css/agency.css',
-    'resources/css/styles.css'
+    // 'resources/css/styles.css'
 
 ],'public/css/libs.css');
 
 mix.scripts([
 
     'resources/js/jquery-3.3.1.min.js',
-    'resources/js/jquery.js',
+    // 'resources/js/jquery.js',
     'resources/js/owl.carousel.js',
     'resources/js/owl.carousel.min.js',
     // 'resources/js/sb-admin-2.js',
     'resources/js/popper.js',
-    'resources/js/bootstrap.js',
     'resources/js/jquery-ui.js',
+    'resources/js/bootstrap.min.js',
     'resources/js/scripts.js'
 
 

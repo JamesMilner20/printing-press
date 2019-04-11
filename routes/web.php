@@ -22,6 +22,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/posts/{posts}', ['as'=>'home.post','uses'=>'AdminPostsController@posts']);
 
+Route::post('/search', 'HomeController@search')->name('search');
+
+Route::get('/authors/{user}', 'UserPartnerController@show')->name('author.show');
+
+//Route::get('/companies/{company}', 'CompanyController@show')->name('companies.show');
+
 
 Route::group(['middleware'=>'Admin'], function(){
 

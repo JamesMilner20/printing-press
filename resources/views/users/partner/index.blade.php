@@ -51,7 +51,7 @@
                             @if($user->image_id)
                                 @foreach($join as $image)
                                     @if($image->id == $user->id)
-                                        <img height="150px" class="img-responsive rounded" src="{{'/images/profile_images/'.$image->name}}" alt="Card image cap">
+                                        <img height="150px" class="img-responsive rounded" src="{{'/images/'.$image->name}}" alt="Card image cap">
                                     @endif
                                 @endforeach
                             @else

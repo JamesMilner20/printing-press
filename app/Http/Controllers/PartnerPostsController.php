@@ -134,7 +134,7 @@ class PartnerPostsController extends Controller
 
                 $name = time() . $file->getClientOriginalName();
 
-                $file->move('images/prod', $name);
+                $file->move('images', $name);
 
                 $product->Images()->create(['name' => $name]);
 
@@ -143,7 +143,7 @@ class PartnerPostsController extends Controller
         }
         Auth::user()->products()->whereId($id)->first()->update($input);
 
-        return redirect('/partners/product');
+        return redirect('/partner/products');
     }
 
     /**

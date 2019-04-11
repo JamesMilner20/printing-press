@@ -15,7 +15,7 @@
  * @todo Test Zepto
  * @todo stagePadding calculate wrong active classes
  */
-(function($, window, document, undefined) {
+;(function($, window, document, undefined) {
 
 	/**
 	 * Creates a carousel.
@@ -184,7 +184,7 @@
 	 * @public
 	 */
 	Owl.Defaults = {
-		items: 3,
+		items: 2,
 		loop: false,
 		center: false,
 		rewind: false,

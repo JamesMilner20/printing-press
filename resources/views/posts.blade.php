@@ -14,35 +14,53 @@
             <h1>{{$product->name}}</h1>
 
         <!-- Author -->
-            <p class="lead">
-                by <a class="text-capitalize" href="#">{{$product->user->name}}</a>
-            </p>
 
-            <hr>
+                <ul class="list-inline lead">
+                    <li class="list-inline-item"><i class="fa fa-user"></i> By <a href="#">{{$product->user->name}}</a></li>
+                    <li class="list-inline-item"><i class="fa fa-folder"></i> Category: <a href="#">{{$product->categories->name}}</a></li>
+                    {{--<li class="list-inline-item"><span class="fa fa-business-time"></span> Updated: {{$product->updated_at->diffForHumans()}}</li>--}}
+                </ul>
 
-        <!-- Date/Time -->
-            <p><span class="fa fa-business-time"></span> Posted {{$product->created_at->diffForHumans()}}</p>
 
             <hr>
 
         <!-- Preview Image -->
-            <div class="owl-carousel owl-theme center" data-toggle="modal" data-target="#exampleModal">
-                @if($product->images)
-                    @foreach($product->images as $image)
-                        <div class="item">
-                            <img height="100%" class="img-fluid mx-md-auto rounded" style="width: 100%" src="{{'/images/'.$image->name}}" alt="{{$product->name}}">
-                        </div>
-                    @endforeach
-                @else
-                    <p>No Image</p>
-                @endif
+        <div class="card">
+            <div class="card-body">
+                <div class="owl-carousel owl-theme" data-toggle="modal" data-target="#exampleModal">
+                    @if($product->images)
+                        @foreach($product->images as $image)
+                            <div class="item"><img height="100%" class="img-fluid"  src="{{'/images/'.$image->name}}" alt="{{$product->name}}"></div>
+                        @endforeach
+                    @else
+                        <p>No Image</p>
+                    @endif
+                </div>
+
+
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">{{$product->description}}</p>
+                <p class="card-text"><small class="text-muted"><span class="fa fa-business-time"></span> Updated {{$product->updated_at->diffForHumans()}}</small></p>
             </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @foreach($product->images as $image)
+                        <div class="item"><img height="100%" class="img-fluid mx-md-auto rounded" src="{{'/images/'.$image->name}}" alt="{{$product->name}}"></div>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
             <hr>
 
-        <!-- Post Content -->
-                <p class="lead">{{$product->description}}</p>
-
-            <hr>
         <!-- Blog Comments -->
         <!-- Posted Comments -->
             @if(Session::has('comment flash'))
@@ -184,19 +202,3 @@
 
 @stop
 
-
-@section('scripts')
-    <script>
-        $(document).ready(function(){
-
-            $(".owl-carousel").owlCarousel();
-
-
-        });
-
-
-    </script>
-
-
-
-@stop

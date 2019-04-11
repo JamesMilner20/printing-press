@@ -25740,17 +25740,11 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-$(document).ready(function () {
-  myFunction();
+$(".owl-carousel").owlCarousel();
+$("#menu-toggle").click(function (e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
 });
-
-function myFunction() {
-  $(".owl-carousel").owlCarousel();
-  $("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-}
 
 /***/ }),
 

@@ -248,30 +248,10 @@
 
             </div>
         </div>
-        </div>
+        {{--</div>--}}
 
         <!-- Container End -->
 
 
 
-@stop
-
-@section('personal-js')
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        myFunction();
-    });
-
-    function myFunction() {
-
-        $(".owl-carousel").owlCarousel();
-
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    }
-
-</script>
 @stop

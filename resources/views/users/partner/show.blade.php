@@ -30,7 +30,7 @@
 
                             @if($user->image_id)
                                 @foreach($join as $image)
-                            <img src="{{'/images/profile_images/'.$image->name}}" alt="image of {{$user->name}}" height="150px" class="rounded img-responsive main main-raised rounded-circle">
+                            <img src="{{'/images/'.$image->name}}" alt="image of {{$user->name}}" height="150px" class="rounded img-responsive main main-raised rounded-circle">
                                 @endforeach
                             @endif
 

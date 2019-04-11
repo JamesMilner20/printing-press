@@ -39,22 +39,26 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand nav-link active" href="#">Start Bootstrap <span class="sr-only">(current)</span></a>
+                <a class="navbar-brand nav-link active" href="{{route('home')}}">Start Bootstrap <span class="sr-only">(current)</span></a>
+
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav mr-auto btn-group" role="group">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-info my-2 my-sm-0" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-info my-2 my-sm-0" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-info my-2 my-sm-0" href="#">Contact</a>
-                    </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center">
 
-                    <!-- Authentication Links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                {{--</ul>--}}
+
+                {{--<ul class="ml-auto">--}}
+                <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -66,11 +70,11 @@
                     @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -83,11 +87,6 @@
                             </div>
                         </li>
                         @endguest
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-
-
                 </ul>
 
             </div>
@@ -102,61 +101,56 @@
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="header">
-                    Page Heading
-                    <small class="text-muted">Secondary Text</small>
-                </h1>
+            <div class="col-md-8 mt-2">
 
                @yield('content')
 
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
+            <div class="col-md-4 mt-2">
 
                 <!-- Blog Search Well -->
                 <div class="panel p-3 m-3 border-dark border rounded">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-append">
-                                <button class="btn btn-outline-dark" type="button">
-                                    <span class="fa fa-search"></span>
-                            </button>
-                            </span>
+                    <h4>Search</h4>
+                    <div>
+
+                        @include('includes.form_error')
+
                     </div>
+                    <form action="{{ route('search') }}" method="POST">
+                            @csrf
+
+                        <div class="input-group">
+
+                            {!! Form::text('query',null,['class'=>'form-control']) !!}
+
+                            <span class="input-group-append">
+                                {!! Form::submit('Search',['class'=>'btn btn-sm btn-primary']) !!}
+                            </span>
+                        </div>
+                    </form>
                     <!-- /.input-group -->
                 </div>
 
                 <!-- Blog Categories Well -->
                 <div class="panel p-3 m-3 border-dark border rounded">
-                    <h4>Blog Categories</h4>
+                    <h4>Categories</h4>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-6 offset-3">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                                @if(count($categories) > 0)
+
+                                    @foreach($categories as $category)
+
+                                        <li>
+                                            <a href="#">{{$category->name}}</a>
+                                        </li>
+
+                                    @endforeach
+
+                                @endif
+
                             </ul>
                         </div>
                         <!-- /.col-lg-6 -->
@@ -195,9 +189,9 @@
 <!-- /.container -->
 
 <!-- Scripts -->
-<script src="{{ asset('js/libs.js')}}" defer></script>
+<script src="{{ asset('js/libs.js')}}" ></script>
 
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}" ></script>
 
 
 
