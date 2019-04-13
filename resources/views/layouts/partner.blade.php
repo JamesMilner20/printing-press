@@ -36,11 +36,8 @@
             </div>
             <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="{{route('products.index')}}" class="list-group-item list-group-item-action bg-light">Products</a>
+                <a href="{{route('product.index')}}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a href="{{route('partner.index')}}" class="list-group-item list-group-item-action bg-light">Users</a>
-{{--                <a href="{{route('category.index')}}" class="list-group-item list-group-item-action bg-light">Categories</a>--}}
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -165,9 +162,9 @@
 </div>
 
 <!-- Scripts -->
-{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-
 <script src="{{ asset('js/libs.js')}}"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 
 
 @yield('personal-js')

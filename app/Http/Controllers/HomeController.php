@@ -16,10 +16,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
 
     /**
@@ -38,12 +38,15 @@ class HomeController extends Controller
 
     public function search(HomeSearchRequest $request)
     {
+
+        $categories = Categories::all();
+
         $searchResults = (new Search())
             ->registerModel(Products::class, 'name')
             ->registerModel(User::class, 'name')
             ->perform($request->input('query'));
 
-        return view('search', compact('searchResults'));
+        return view('search', compact('searchResults','categories'));
     }
 
 

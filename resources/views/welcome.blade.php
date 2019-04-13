@@ -1,236 +1,112 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('land')
 
-        <script src="{{ asset('js/app.js') }}" defer></script>
+    active
 
-        <script src="{{ asset('js/libs.js') }}" defer></script>
+    @stop
 
+@section('content')
 
-
-        <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
-
-
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
-
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <header class="masthead">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
+                <a class="btn btn-primary text-uppercase js-scroll-trigger" href="bookings\booking.php">Book now for 10% discount</a>
+            </div>
+        </div>
+    </header>
 
 
-    </head>
-    <body>
+    <section id="services">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Services</h2>
+                    <h3 class="section-subheading text-muted">Here are some service categories we do</h3>
+                </div>
 
-    <div id="app">
+                @if(count($categories) > 0)
 
-        <div class="container-fluid">
+                    @foreach($categories as $category)
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top btn-light" alt="">
-                    Bootstrap
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                        <div class="col-lg-3 col-sm-6 mt-2">
+                            <div class="card my-3 my-lg-0">
+                                <img class="card-img-top" src="images/1555082502man3.jpg" class="img-fluid w-100" alt="Card image cap">
+                                <div class="card-body bg-gray text-center">
+                                    <h5 class="card-title"><a href="{{route('home.category',$category->id)}}">{{$category->name}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @endforeach
 
-                    <ul class="navbar-nav ml-auto">
-                        @if (Route::has('login'))
-                            @auth
-                            <li class="nav-item"><a class="nav-link btn btn-outline-info my-2 my-sm-0" href="{{ url('/home') }}">Home</a></li>
-                            @else
-                                <li class="nav-item"><a class="nav-link btn btn-outline-info my-2 my-sm-0" href="{{ route('login') }}">Login</a></li>
+                @endif
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item"><a class="nav-link btn btn-outline-info my-2 my-sm-0" href="{{ route('register') }}">Register</a></li>
-                                @endif
-                                @endauth
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="services">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Items Produced</h2>
+                    <h3 class="section-subheading text-muted">Here are some items we have printed</h3>
+                </div>
+
+                        @if(count($products) > 0)
+
+                            @foreach($products as $product)
+
+                                <div class="col-lg-3 col-sm-6 mt-2">
+                                    <div class="card my-3 my-lg-0">
+                                        <div class="mt-2 owl-carousel owl-theme center frontOwl" data-toggle="modal" data-target="#exampleModal">
+                                            @if($product->images)
+                                                @foreach($product->images as $image)
+                                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                                        <div class="item">
+                                                            <img height="100px" href="#portfolioModal1" class="card-img-top " src="{{'/images/'.$image->name}}" alt="{{$product->name}}">
+                                                        </div>
+                                                    </a>
+                                                @endforeach
+                                            @else
+                                                <p>No Image</p>
+                                            @endif
+                                        </div>
+                                        <div class="card-body bg-gray text-center">
+
+                                            <h5 class="card-title"><a href="{{route('home.post',$product->id)}}">{{$product->name}}</a></h5>
+                                            <p class="card-text">{{$product->description}}</p>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><i class="fa fa-user"></i> By <a href="{{route('home.partner',$product->user->id)}}">{{$product->user->name}}</a></li>
+                                                <li class="list-group-item"><i class="fa fa-folder"></i> Category: <a href="{{route('home.category',$product->categories->id)}}">{{$product->categories->name}}</a></li>
+                                                <li class="list-group-item"><span class="fa fa-business-time"></span> Updated: {{$product->updated_at->diffForHumans()}}</li>
+                                                @if(count($product->comments) >= 1)
+                                                    <li class="list-group-item"><a class="btn btn-primary" href="{{route('home.post',$product->id)}}"><span class="fa fa-comment"></span> {{count($product->comments)}}</a></li>
+                                                @endif
+                                            </ul>
+                                            <a href="{{url('/home')}}">View more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         @endif
 
-                    </ul>
-
-
+                <!-- <div class="col-md-4">
+                  <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <h4 class="service-heading">Web Security</h4>
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div> -->
             </div>
-        </nav>
-
         </div>
-
-        {{--<div class="flex-center position-ref full-height">--}}
-
-
-            {{--<div class="content">--}}
-
-                {{--<div class="title m-b-md">--}}
-                    {{--Laravel--}}
-                {{--</div>--}}
-
-                {{--<div class="links">--}}
-                    {{--<a href="https://laravel.com/docs">Docs</a>--}}
-                    {{--<a href="https://laracasts.com">Laracasts</a>--}}
-                    {{--<a href="https://laravel-news.com">News</a>--}}
-                    {{--<a href="https://blog.laravel.com">Blog</a>--}}
-                    {{--<a href="https://nova.laravel.com">Nova</a>--}}
-                    {{--<a href="https://forge.laravel.com">Forge</a>--}}
-                    {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
-                {{--</div>--}}
+    </section>
 
 
-            {{--</div>--}}
-        {{--</div>--}}
-
-        <header class="masthead">
-            <div class="container">
-                <div class="intro-text">
-                    <div class="intro-lead-in">Welcome To Our Studio!</div>
-                    <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-                    <a class="btn btn-primary text-uppercase js-scroll-trigger" href="bookings\booking.php">Book now for 10% discount</a>
-                </div>
-            </div>
-        </header>
-
-        <section id="services">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Services and Products</h2>
-                        <h3 class="section-subheading text-muted">Here are some services we offer</h3>
-                    </div>
-                    <div class="card-columns container">
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- <div class="col-md-4">
-                      <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                      </span>
-                      <h4 class="service-heading">Web Security</h4>
-                      <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-
-
-        <hr>
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; Your Website 2018</span>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="list-inline quicklinks">
-                            <li class="list-inline-item">
-                                <a href="#">Privacy Policy</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Terms of Use</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-
-    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-
-    </body>
-</html>
+@stop

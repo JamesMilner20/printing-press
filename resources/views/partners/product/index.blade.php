@@ -6,7 +6,7 @@
 
     {{--<button  class="btn btn-secondary btn-sm mr-2" <span class="sr-only">(current)</span></button>--}}
     {{--<li class="nav-item">--}}
-        <a class="btn btn-secondary btn-sm mr-2" href="{{route('products.create')}}">Add Item<span class="sr-only">(current)</span></a>
+        <a class="btn btn-secondary btn-sm mr-2" href="{{route('product.create')}}">Add Item<span class="sr-only">(current)</span></a>
     {{--</li>--}}
 
 
@@ -64,7 +64,7 @@
                         </td>
                         <td class="product-details">
                             <h3 class="title">
-                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('products.show',$product->id)}}">
+                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
                                     {{$product->name}}
                                 </a>
                                 </h3>
@@ -84,13 +84,13 @@
                             <div class="">
                                 <ul class="justify-content-center">
                                     <li class="list-group-item">
-                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('products.show',$product->id)}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </li>
                                     @if(Auth::user()->id == $product->user_id)
                                         <li class="list-group-item">
-                                            <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('products.edit',$product->id)}}">
+                                            <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('product.edit',$product->id)}}">
                                                 <i class="fa fa-pen"></i>
                                             </a>
                                         </li>

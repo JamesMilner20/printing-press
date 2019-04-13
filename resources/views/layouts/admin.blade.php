@@ -30,6 +30,7 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
                 <a href="{{route('admin.product.index')}}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a href="{{route('users.index')}}" class="list-group-item list-group-item-action bg-light">Users</a>
+                <a href="{{route('comments.index')}}" class="list-group-item list-group-item-action bg-light">Comments</a>
                 <a href="{{route('category.index')}}" class="list-group-item list-group-item-action bg-light">Categories</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>

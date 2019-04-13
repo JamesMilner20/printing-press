@@ -71,7 +71,7 @@ class PartnerPostsController extends Controller
 
         }
 
-        return redirect('/partner/products');
+        return redirect('/partners/product');
     }
 
     /**
@@ -143,7 +143,7 @@ class PartnerPostsController extends Controller
         }
         Auth::user()->products()->whereId($id)->first()->update($input);
 
-        return redirect('/partner/products');
+        return redirect('/partners/product');
     }
 
     /**

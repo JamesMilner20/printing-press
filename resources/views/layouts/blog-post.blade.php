@@ -12,6 +12,7 @@
     <title>Blog Post - Start Bootstrap Template</title>
 
     <!-- Styles -->
+
     <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -31,36 +32,33 @@
 <div id="app">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark border-bottom" role="navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-top-links">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-
-
-                <a class="navbar-brand nav-link active" href="{{route('home')}}">Start Bootstrap <span class="sr-only">(current)</span></a>
+                <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">Company Name </a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto text-center">
+                <ul class="navbar-nav ml-auto text-center main-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link @yield('active')" href="{{route('about')}}">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link @yield('service')" href="#">Services </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link @yield('contact')" href="#">Contact </a>
                     </li>
                 {{--</ul>--}}
 
                 {{--<ul class="ml-auto">--}}
-                    <!-- Authentication Links -->
+                <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -71,12 +69,29 @@
                         </li>
                     @endif
                     @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link dropdown-toggle @yield('home')" href="{{url('/home')}}" role="button" data-toggle="dropdown">
+                                Home <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item @yield('home')" href="{{url('/home')}}" >
+                                    Home
+                                </a>
+                                @if(Auth::user()->role_id == 1 )
+
+                                    <a class="dropdown-item" href="{{url('/admin')}}" >
+                                        Admin Dashboard
+                                    </a>
+
+                                @elseif(Auth::user()->role_id == 2 )
+
+                                    <a class="dropdown-item" href="{{url('/partner')}}" >
+                                        Partner Dashboard
+                                    </a>
+
+                                @endif
+                                <a class="dropdown-item" href="">{{ Auth::user()->name }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,13 +106,11 @@
                         @endguest
                 </ul>
 
-
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
 
 
     <!-- Page Content -->
@@ -145,7 +158,7 @@
                                     @foreach($categories as $category)
 
                                         <li>
-                                            <a href="#">{{$category->name}}</a>
+                                            <a href="{{route('home.category',$category->id)}}">{{$category->name}}</a>
                                         </li>
 
                                     @endforeach
@@ -173,14 +186,54 @@
         <hr>
 
         <!-- Footer -->
+
         <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="copyright">Copyright &copy; Your Website 2018</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-inline quicklinks">
+                            <li class="list-inline-item">
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Terms of Use</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- /.row -->
         </footer>
+
+        {{--<footer>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-12">--}}
+                    {{--<p>Copyright &copy; Your Website 2014</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<!-- /.row -->--}}
+        {{--</footer>--}}
 
     </div>
     <!-- /.container -->
@@ -192,7 +245,7 @@
 
 <script src="{{ asset('js/app.js') }}" ></script>
 
-@yield('scripts')
+
 
 </body>
 

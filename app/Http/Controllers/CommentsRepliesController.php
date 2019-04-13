@@ -52,10 +52,8 @@ class CommentsRepliesController extends Controller
             'comments_id' => $request->comments_id,
             'author'=> $user->name,
             'email'=>$user->email,
-            'photo'=>$user->image->name,
+            'photo'=>$user->image ? $user->image->name : 'noImage.png',
             'body'=>$request->body
-
-
 
         ];
 

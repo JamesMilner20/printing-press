@@ -30,6 +30,11 @@
                 {!! Form::text('name',null,['class'=>'form-control']) !!}
             </div>
 
+            <div class="form-group col-6">
+                {!! Form::label('images_id','Category Image') !!}
+                {!! Form::file('images_id',['class'=>'form-control']) !!}
+            </div>
+
             <div class="form-group">
                 {!! Form::submit('Add Category',['class'=>'btn btn-primary']) !!}
             </div>
@@ -45,6 +50,7 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Name</th>
                         <th class="text-center">Action</th>
                         {{--<th scope="col">Created Date</th>--}}
@@ -56,6 +62,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <td>{{$number++}}</td>
+{{--                            <td><a href="{{route('category.show',$category->id)}}">{{$category->name}}</a></td>--}}
                             <td><a href="{{route('category.show',$category->id)}}">{{$category->name}}</a></td>
                             <td>
                                 <div class="">

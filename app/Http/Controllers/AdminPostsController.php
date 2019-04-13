@@ -7,10 +7,12 @@ use App\comments;
 use App\Http\Requests\ProductRequest;
 use App\Images;
 use App\Products;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use willvincent\Rateable\Rateable;
 
 class AdminPostsController extends Controller
 {
@@ -187,11 +189,53 @@ class AdminPostsController extends Controller
 
 //        $replies = dd($comments->replies)->whereIsActive(1)->get();
 
-        return view('posts',compact('product','comments','replies','categories'));
+        return view('posts',compact('product','comments','replies','categories','rateable'));
 
 
 
     }
+
+    public function category($id)
+    {
+
+        $products = Products::whereCategoriesId($id)->orderBy('created_at','desc')->get();
+
+        $category = Categories::whereId($id)->get();
+
+        $categories = Categories::all();
+
+        return view('category',compact('products','categories','category'));
+
+
+
+    }
+
+    public function partner($id)
+    {
+
+        $products = Products::whereUserId($id)->orderBy('created_at','desc')->get();
+
+        $user = User::whereId($id)->get();
+
+        $categories = Categories::all();
+
+        return view('partner',compact('products','categories','user'));
+
+
+
+    }
+
+    public function welcome()
+    {
+
+        $products = Products::orderBy('created_at','desc')->paginate(4);
+
+        $categories = Categories::all();
+
+        return view('welcome',compact('products','categories'));
+
+    }
+
 
 
 }

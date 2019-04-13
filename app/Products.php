@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use willvincent\Rateable\Rateable;
 
 class Products extends Model implements Searchable
 {
     //
+
+    use Rateable;
 
     protected $fillable = [
 

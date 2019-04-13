@@ -24,6 +24,9 @@ class Categories extends Model
 
     }
 
+    public function images(){
+        return $this->belongsTo('App\Images');
+    }
 
 
 

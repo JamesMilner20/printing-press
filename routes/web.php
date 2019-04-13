@@ -11,16 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as'=>'welcome','uses'=>'AdminPostsController@welcome']);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/about-us',function () {
+    return view('about-us');
+})->name('about');
 
 Route::get('/posts/{posts}', ['as'=>'home.post','uses'=>'AdminPostsController@posts']);
+
+Route::get('/category/{category}', ['as'=>'home.category','uses'=>'AdminPostsController@category']);
+
+Route::get('/partner/{partner}', ['as'=>'home.partner','uses'=>'AdminPostsController@partner']);
 
 Route::post('/search', 'HomeController@search')->name('search');
 
@@ -60,15 +65,24 @@ Route::group(['middleware'=>'Admin'], function(){
 
 Route::group(['middleware'=>'partner'], function(){
 
-    Route::resource('partner/products', 'PartnerPostsController');
+    Route::get('/partner', function (){
+
+        return view('partners.index');
+
+    });
+
+    Route::resource('partners/product', 'PartnerPostsController');
 
     Route::resource('users/partner', 'UserPartnerController');
 
 });
 
 
+
 Route::group(['middleware'=>'auth'], function(){
 
     Route::post('comment/reply','CommentsRepliesController@createReply');
+
+    Route::post('comment/posts','PostsCommentsController@store');
 
 });

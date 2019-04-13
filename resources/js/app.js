@@ -41,6 +41,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
         $("#wrapper").toggleClass("toggled");
     });
 
+    $("#input-1").rating();
+
+
+
+
 
 
 

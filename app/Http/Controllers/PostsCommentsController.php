@@ -51,15 +51,22 @@ class PostsCommentsController extends Controller
             'products_id' => $request->products_id,
             'author'=> $user->name,
             'email'=>$user->email,
-            'photo'=>$user->image->name,
+            'photo'=>$user->image ? $user->image->name : 'noImage.png',
             'body'=>$request->body
-
-
 
         ];
 
+        $comment = Comments::create($data);
 
-        Comments::create($data);
+        $product = Products::find($request->products_id);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rate;
+
+        $rating->user_id = $user->id;
+
+        $rating->comment_id = $comment->id;
+
+        $product->ratings()->save($rating);
 
         $request->session()->flash('comment flash','Your message has been submitted to the administrator for moderation');
 
@@ -106,6 +113,17 @@ class PostsCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $user = Auth::user();
+
+        $product = Products::find($request->products_id);
+        $rating->rating = $request->rate;
+
+        $rating->user_id = $user->id;
+
+
+
+        $product->ratings()->save($rating);
 
         Comments::findOrFail($id)->update($request->all());
 

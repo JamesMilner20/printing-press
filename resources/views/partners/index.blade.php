@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>Admin</h1>
+    <h1>Partner</h1>
 
 
 @stop

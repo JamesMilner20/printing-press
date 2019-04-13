@@ -86,15 +86,8 @@
                                 {!! Form::text('profession',null,['class'=>'form-control']) !!}
                             </div>
 
-                            <div class="form-group col-3">
-                                {!! Form::label('role_id','Role') !!}
-                                {!! Form::select('role_id',[''=>'Choose Options'] + $roles ,null,['class'=>'form-control']) !!}
-                            </div>
-
-                            <div class="form-group col-3">
-                                {!! Form::label('isActive','Status') !!}
-                                {!! Form::select('isActive',array(1=>'Active',0=>'Not Active'),null,['class'=>'form-control']) !!}
-                            </div>
+                            <input type="hidden" name="role_id" value="2">
+                            <input type="hidden" name="isActive" value="1">
 
                             <div class="form-group col-6">
                                 {!! Form::label('image_id','Profile Image') !!}

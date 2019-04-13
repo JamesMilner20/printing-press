@@ -20,7 +20,7 @@
                             <div class="col-4">
                                 @if(Auth::user()->id == $product->user_id)
                                     <ul class="list-inline mt-20">
-                                        <li class="list-inline-item"><a href="{{route('products.edit',$product->id)}}" class="btn btn-secondary">Edit Product</a></li>
+                                        <li class="list-inline-item"><a href="{{route('product.edit',$product->id)}}" class="btn btn-secondary">Edit Product</a></li>
                                     </ul>
                                 @endif
                             </div>
