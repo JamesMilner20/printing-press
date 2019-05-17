@@ -80,7 +80,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('users.show',$user->id)}}">
+                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('users.edit',$user->id)}}">
                                         {{$user->name}}
                                     </a>
                                 </h5>
@@ -90,7 +90,7 @@
                                         @if($products)
                                             @foreach($products as $product)
                                                 @if($user->id == $product->user_id)
-                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('admin.product.show',$product->id)}}">
+                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('home.post',$product->id)}}">
                                                         <div class="row">
                                                             <span class="col-7">{{$product->name}}</span>
                                                             <span class="col-5">{{$product->created_at->diffForHumans()}}</span>

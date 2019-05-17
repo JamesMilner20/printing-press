@@ -1,33 +1,12 @@
 @extends('layouts.partner')
 
-@section('navButton')
-
-    <ul class="navbar-nav mt-2 mt-lg-0">
-        <li class="nav-item active">
-        <a class="nav-link btn btn-info btn-sm mr-2" href="{{route('partner.show',$user->id)}}">View Profile<span class="sr-only">(current)</span></a>
-        </li>
-        {{--<li class="nav-item dropdown">--}}
-        {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-        {{--Dropdown--}}
-        {{--</a>--}}
-        {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-        {{--<a class="dropdown-item" href="#">Action</a>--}}
-        {{--<a class="dropdown-item" href="#">Another action</a>--}}
-        {{--<div class="dropdown-divider"></div>--}}
-        {{--<a class="dropdown-item" href="#">Something else here</a>--}}
-        {{--</div>--}}
-        {{--</li>--}}
-    </ul>
-
-
-@stop
 
 @section('content')
 
 
     <div class="container bootstrap snippet">
         <div class="row">
-            <div class="col-sm-10"><h1>User name</h1></div>
+            <div class="col-sm-10"><h1>Profile</h1></div>
             <div class="col-sm-2">
                 <a  class="pull-right">
                     @if($user->image_id)
@@ -143,7 +122,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::submit('Add User',['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Save',['class'=>'btn btn-primary']) !!}
                         </div>
                         {!! Form::close() !!}
 

@@ -21,19 +21,22 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('Printing Press', 'Printing Press') }}
+            <div class="pt-1 pb-1">
+                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                    {{--{{ config('Printing Press', 'Printing Press') }}--}}
+                {{--</a>--}}
+                <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">
+                    <img class="rounded-circle d-inline-block align-top" src="../img/logo.png" width="30" height="30" alt=""> Kanfa Grafix
                 </a>
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                {{--<a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>--}}
                 <a href="{{route('admin.product.index')}}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a href="{{route('users.index')}}" class="list-group-item list-group-item-action bg-light">Users</a>
                 <a href="{{route('comments.index')}}" class="list-group-item list-group-item-action bg-light">Comments</a>
                 <a href="{{route('category.index')}}" class="list-group-item list-group-item-action bg-light">Categories</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                <a href="{{route('users.edit',Auth::user()->id)}}" class="list-group-item list-group-item-action bg-light">Profile</a>
+                {{--<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>--}}
             </div>
         </div>
         <!-- /#sidebar-wrapper -->

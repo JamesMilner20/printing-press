@@ -17,10 +17,12 @@
 
                 <ul class="list-inline lead">
                     <li class="list-inline-item"><i class="fa fa-user"></i> By <a href="{{route('home.partner',$product->user->id)}}">{{$product->user->name}}</a></li>
-                    <li class="list-inline-item"><i class="fa fa-folder"></i> Category: <a href="#">{{$product->categories->name}}</a></li>
-
-                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $product->userAverageRating }}" data-size="xs" disabled="">
-
+                    <li class="list-inline-item"><i class="fa fa-folder"></i> Category: <a href="{{route('home.category',$product->categories->id)}}">{{$product->categories->name}}</a></li>
+                    @if(isset($product->userAverageRating))
+                    <p>You rated this post as
+                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $product->userAverageRating }}" data-size="xs" disabled="">
+                    </p>
+                    @endif
                     {{--<li class="list-inline-item"><span class="fa fa-business-time"></span> Updated: {{$product->updated_at->diffForHumans()}}</li>--}}
                 </ul>
 
@@ -30,6 +32,30 @@
         <!-- Preview Image -->
         <div class="card">
             <div class="card-body">
+                @if(! @guest)
+                <ul class="justify-content-center list-inline">
+                    @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
+                        <li class="list-inline-item">
+                            <a class="" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('admin.product.edit',$product->id)}}">
+                                <i class="fa fa-pen"> Edit</i>
+                            </a>
+                        </li>
+                    @elseif(Auth::user()->id == $product->user_id && $product->user->role->id == 2)
+                            <li class="list-inline-item">
+                                <a class="" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('product.edit',$product->id)}}">
+                                    <i class="fa fa-pen"> Edit</i>
+                                </a>
+                            </li>
+                    @endif
+                    @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
+                        <li class="list-inline-item">
+                            <a class="" data-toggle="tooltip" data-placement="top" title="Review" href="{{route('comments.index',$product->id)}}">
+                                <i class="fa fa-comment-alt"> Review Comments</i>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+                @endif
                 <div class="owl-carousel owl-theme" data-toggle="modal" data-target="#exampleModal">
                     @if($product->images)
                         @foreach($product->images as $image)
@@ -94,15 +120,35 @@
 
 
                         <!-- Comment -->
-                            <div class="media panel p-3 m-3 border-dark border rounded">
-                                <a class="pull-left" href="#">
-                                    <img height="64px" class="media-object m-2" src="{{'/images/profile_images/'.$comment->photo}}" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">{{$comment->author}}</h4>
-                                    <p>{{$comment->body}}</p>
-                                    <small class="text-muted pull-right">{{$comment->created_at->diffForHumans()}}</small>
+                            <div class=" panel p-3 m-3 border-dark border rounded">
+                                <div class="row">
+                                    <div class="col-3 m-0 text-center">
+                                            <img height="64px" class="rounded-circle " src="{{$comment->photo ? '/images/profile_images/'.$comment->photo : '/images/profile_images/noImage.png'}}" alt="">
+                                        <h4 class="panel-heading">{{$comment->author}}</h4>
+                                    </div>
 
+                                    <div class="col-9 m-0 pl-0">
+                                        <div class="panel-body">
+
+                                            <p>{{$comment->body}}</p>
+                                            <small class="text-muted pull-right">{{$comment->created_at->diffForHumans()}}</small>
+                                        </div>
+                                    </div>
+                                    @if(! @guest)
+                                    @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
+                                        <ul class="justify-content-center">
+                                            <li class="list-group-item">
+
+                                                <a class="edit" data-toggle="tooltip" data-placement="top" title="Delete" href="{{route('comments.destroy',$comment->id)}}">
+                                                    <i class="fa fa-trash-alt"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                    @endif
+                                </div>
+
+                                {{--<div class="row">--}}
                                 @if(count($replies) > 0)
 
                                     @foreach($replies as $reply)
@@ -112,23 +158,30 @@
                                             @if($reply->is_active == 1)
 
                                                 <!-- Nested Comment -->
-                                                    <div class="media panel p-3 m-3 border-dark border rounded">
-                                                        <a class="pull-left" href="#">
-                                                            <img height="64px" class="media-object m-2" src="{{'/images/profile_images/'.$reply->photo}}" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">{{$reply->author}}
-                                                                {{--                                                    <small><p>{{$reply->updated_at->diffForHumans()}}</p></small>--}}
-                                                            </h4>
-                                                            {{--                                                <p><small class="text-muted"><span class="fa fa-business-time"></span> Updated {{$reply->created_at->diffForHumans()}}</small></p>--}}
-                                                            <p>{{$reply->body}}</p>
+                                                <div class="panel p-2 m-2 border-dark border rounded">
+                                                    <div class="row">
+                                                        <div class="col-3 m-0 text-center">
+                                                            <img height="64px" class="rounded-circle" src="{{$reply->photo ? '/images/profile_images/'.$reply->photo : '/images/profile_images/noImage.png'}}" alt="">
+                                                            <h4 class="panel-heading">{{$reply->author}}</h4>
+                                                        </div>
+                                                        <div class="col-9 m-0 pl-0">
+                                                            <div class="panel-body">
+                                                                    {{--<small><p>{{$reply->updated_at->diffForHumans()}}</p></small>--}}
+
+                                                                {{--<p><small class="text-muted"><span class="fa fa-business-time"></span> Updated {{$reply->created_at->diffForHumans()}}</small></p>--}}
+                                                                <p>{{$reply->body}}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                </div>
+
                                                 @endif
 
                                             @endif
 
                                         @endforeach
+
                                         @if(Auth::check())
 
 
@@ -178,8 +231,8 @@
                                         @endif
 
                                     @endif
+                                {{--</div>--}}
 
-                                </div>
                             </div>
 
                     @endforeach
@@ -232,7 +285,36 @@
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <h3 class="tab-title">Product Review</h3>
 
-                    
+                    <p>
+                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $product->averageRating }}" data-size="xs" disabled="">
+                        average star rating from {{count($product->ratings)}} {{count($product->ratings) > 1 ? 'users' : 'user'}}
+                    </p>
+
+                    @if($product->ratings)
+                        @foreach($product->ratings as $review)
+                            @foreach($comments as $comment)
+                                @if($comment->id == $review->comment_id)
+
+                                    <div class="media panel p-3 m-3 border-dark border rounded">
+                                        <a class="pull-left" href="#">
+                                            <img height="64px" class="media-object m-2" src="{{$comment->photo ? '/images/profile_images/'.$comment->photo : '/images/profile_images/noImage.png'}}" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{$comment->author}}</h4>
+                                            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $review->rating }}" data-size="xs" disabled="">
+                                            <p>{{$comment->body}}</p>
+        {{--                                    <small class="text-muted pull-right">{{$review->created_at->diffForHumans()}}</small>--}}
+                                        </div>
+                                    </div>
+                                @endif
+
+                            @endforeach
+
+                        @endforeach
+                    @endif
+
+
+
 
                 </div>
             </div>

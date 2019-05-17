@@ -6,7 +6,7 @@
 
     {{--<button  class="btn btn-secondary btn-sm mr-2" <span class="sr-only">(current)</span></button>--}}
     {{--<li class="nav-item">--}}
-        <a class="btn btn-secondary btn-sm mr-2" href="{{route('product.create')}}">Add Item<span class="sr-only">(current)</span></a>
+        <a class="btn btn-danger btn-sm border-white" href="{{route('product.create')}}">Add Post<span class="sr-only">(current)</span></a>
     {{--</li>--}}
 
 
@@ -56,15 +56,19 @@
                     <tr>
 
                         <td class="product-thumb">
-                            {{--@if($product->images)--}}
-                                {{--<img src="{{$product->images->name}}" alt="{{$product->name}}">--}}
-                            {{--@else--}}
-                                <p>No Image</p>
-                            {{--@endif--}}
+                            <div class="owl-carousel owl-theme center" style="width: 100px;">
+                                @if($product->images)
+                                    @foreach($product->images as $image)
+                                        <div class="item"><img height="100" class="rounded" src="{{'/images/'.$image->name}}" alt="{{$product->name}}"></div>
+                                    @endforeach
+                                @else
+                                    <p>No Image</p>
+                                @endif
+                            </div>
                         </td>
                         <td class="product-details">
                             <h3 class="title">
-                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
+                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('home.post',$product->id)}}">
                                     {{$product->name}}
                                 </a>
                                 </h3>
@@ -84,7 +88,7 @@
                             <div class="">
                                 <ul class="justify-content-center">
                                     <li class="list-group-item">
-                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('product.show',$product->id)}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('home.post',$product->id)}}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </li>

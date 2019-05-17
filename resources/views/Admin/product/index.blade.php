@@ -56,15 +56,19 @@
                     <tr>
 
                         <td class="product-thumb">
-                            {{--@if($product->images)--}}
-                                {{--<img src="{{$product->images->name}}" alt="{{$product->name}}">--}}
-                            {{--@else--}}
-                                <p>No Image</p>
-                            {{--@endif--}}
+                            <div style="width: 100px;" class="owl-carousel owl-theme center" data-toggle="modal" data-target="#exampleModal">
+                                @if($product->images)
+                                    @foreach($product->images as $image)
+                                        <div class="item"><img height="100%" class="img-fluid mx-md-auto rounded" style="width: 100%" src="{{'/images/'.$image->name}}" alt="{{$product->name}}"></div>
+                                    @endforeach
+                                @else
+                                    <p>No Image</p>
+                                @endif
+                            </div>
                         </td>
                         <td class="product-details">
                             <h3 class="title">
-                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('admin.product.show',$product->id)}}">
+                                <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('home.post',$product->id)}}">
                                     {{$product->name}}
                                 </a>
                                 </h3>
@@ -84,15 +88,17 @@
                             <div class="">
                                 <ul class="justify-content-center">
                                     <li class="list-group-item">
-                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('admin.product.show',$product->id)}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="{{route('home.post',$product->id)}}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </li>
-                                    <li class="list-group-item">
-                                        <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('admin.product.edit',$product->id)}}">
-                                            <i class="fa fa-pen"></i>
-                                        </a>
-                                    </li>
+                                    @if(Auth::user()->id == $product->user_id)
+                                        <li class="list-group-item">
+                                            <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('admin.product.edit',$product->id)}}">
+                                                <i class="fa fa-pen"></i>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>

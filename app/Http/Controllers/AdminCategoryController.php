@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\Http\Requests\AdminCategoryRequest;
 use App\Images;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class AdminCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
 
         if($file=$request->file('image_id')){
 
@@ -60,7 +62,7 @@ class AdminCategoryController extends Controller
 
         }
 
-        Categories::create($request->all());
+        Categories::create($input);
 
         return redirect('/admin/category');
 
@@ -104,13 +106,15 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminCategoryRequest $request, $id)
     {
         //
 
         $category = Categories::findOrFail($id);
 
-        if($file=$request->file('image_id')){
+        $input = $request->all();
+
+        if($file = $request->file('image_id')){
 
             $name = time().$file->getClientOriginalName();
 
@@ -122,7 +126,7 @@ class AdminCategoryController extends Controller
 
         }
 
-        $category -> update($request->all());
+        $category -> update($input);
 
         return redirect('/admin/category');
 

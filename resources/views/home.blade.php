@@ -16,15 +16,16 @@
             <h2>
                 <a href="{{route('home.post',$product->id)}}">{{$product->name}}</a>
             </h2>
-
-                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $product->averageRating }}" data-size="xs" disabled="">
-
-
             <ul class="list-inline">
                 <li class="list-inline-item"><i class="fa fa-user"></i> By <a href="{{route('home.partner',$product->user->id)}}">{{$product->user->name}}</a></li>
                 <li class="list-inline-item"><i class="fa fa-folder"></i> Category: <a href="{{route('home.category',$product->categories->id)}}">{{$product->categories->name}}</a></li>
                 <li class="list-inline-item"><span class="fa fa-business-time"></span> Updated: {{$product->updated_at->diffForHumans()}}</li>
             </ul>
+            <p>
+                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $product->averageRating }}" data-size="xs" disabled="">
+                average star rating from {{count($product->ratings)}} {{count($product->ratings) > 1 ? 'users' : 'user'}}
+            </p>
+
 
             <p></p>
                 <div class="owl-carousel owl-theme center" data-toggle="modal" data-target="#exampleModal">

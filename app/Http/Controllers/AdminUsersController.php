@@ -153,7 +153,7 @@ class AdminUsersController extends Controller
 
         $user->update($input);
 
-        return redirect('/admin/users');
+        return redirect()->back();
 
 
     }

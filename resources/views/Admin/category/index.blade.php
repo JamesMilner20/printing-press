@@ -31,8 +31,8 @@
             </div>
 
             <div class="form-group col-6">
-                {!! Form::label('images_id','Category Image') !!}
-                {!! Form::file('images_id',['class'=>'form-control']) !!}
+                {!! Form::label('image_id','Category Image') !!}
+                {!! Form::file('image_id',['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -62,7 +62,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <td>{{$number++}}</td>
-{{--                            <td><a href="{{route('category.show',$category->id)}}">{{$category->name}}</a></td>--}}
+                            <td><img height="50" src="{{$category->images ? $category->images->name :'no photo'}}" alt=""></td>
                             <td><a href="{{route('category.show',$category->id)}}">{{$category->name}}</a></td>
                             <td>
                                 <div class="">

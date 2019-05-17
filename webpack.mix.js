@@ -39,6 +39,8 @@ mix.scripts([
     'resources/js/owl.carousel.min.js',
     'resources/js/star-rating.js',
     'resources/js/star-rating.min.js',
+    'resources/js/jqBootstrapValidation.js',
+    'resources/js/contact_me.js',
     'resources/js/popper.js',
     'resources/js/jquery-ui.js',
     'resources/js/theme.min.js',

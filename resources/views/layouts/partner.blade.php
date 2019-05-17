@@ -30,14 +30,16 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('Printing Press', 'Printing Press') }}
+                <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">
+                    <img class="rounded-circle d-inline-block align-top" src="../img/logo.png" width="30" height="30" alt=""> Kanfa Grafix
                 </a>
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                {{--<a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>--}}
                 <a href="{{route('product.index')}}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a href="{{route('partner.index')}}" class="list-group-item list-group-item-action bg-light">Users</a>
+                <a href="{{route('partner.edit',Auth::user()->id)}}" class="list-group-item list-group-item-action bg-light">Profile</a>
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->

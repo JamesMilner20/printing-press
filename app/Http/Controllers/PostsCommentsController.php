@@ -68,7 +68,7 @@ class PostsCommentsController extends Controller
 
         $product->ratings()->save($rating);
 
-        $request->session()->flash('comment flash','Your message has been submitted to the administrator for moderation');
+        $request->session()->flash('comment flash','Your comment has been posted');
 
         return redirect()->back();
     }

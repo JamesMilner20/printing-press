@@ -19,38 +19,38 @@
                         </div>
 
                         {!! Form::open(['method'=>'POST','action'=>'PartnerPostsController@store','files'=>'true']) !!}
-                        <div class="form-group">
-                            {!! Form::label('name','Item Title') !!}
-                            {!! Form::text('name',null,['class'=>"form-control"]) !!}
+                            <div class="form-group">
+                                {!! Form::label('name','Item Title') !!}
+                                {!! Form::text('name',null,['class'=>"form-control"]) !!}
 
-                            @if ($errors->has('name'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                            @endif
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                @endif
 
-                        </div>
+                            </div>
 
-                        <input type="hidden" name="is_active" value="0">
+                            <input type="hidden" name="is_active" value="0">
 
-                        <div class="form-group">
-                            {!! Form::label('categories_id','category') !!}
-                            {!! Form::select('categories_id',[''=>'category']+$categories,null,['class'=>'form-control']) !!}
-                        </div>
+                            <div class="form-group">
+                                {!! Form::label('categories_id','category') !!}
+                                {!! Form::select('categories_id',[''=>'category']+$categories,null,['class'=>'form-control']) !!}
+                            </div>
 
-                        <div class="form-group">
-                            {!! Form::label('image_id','Product Image') !!}
-                            {!! Form::file('image_id[]', ['roles'=>'form','multiple'=>'multiple','class'=>'form-control']) !!}
-                        </div>
+                            <div class="form-group">
+                                {!! Form::label('image_id','Product Image') !!}
+                                {!! Form::file('image_id[]', ['roles'=>'form','multiple'=>'multiple','class'=>'form-control']) !!}
+                            </div>
 
-                        <div class="form-group">
-                            {!! Form::label('description','Description') !!}
-                            {!! Form::textarea('description',null,['class'=>'form-control']) !!}
-                        </div>
+                            <div class="form-group">
+                                {!! Form::label('description','Description') !!}
+                                {!! Form::textarea('description',null,['class'=>'form-control']) !!}
+                            </div>
 
-                        <div class="form-group">
-                            {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
-                        </div>
+                            <div class="form-group">
+                                {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
+                            </div>
                         {!! Form::close() !!}
 
 

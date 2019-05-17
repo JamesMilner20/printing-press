@@ -1,24 +1,5 @@
 @extends('layouts.partner')
 
-@section('navButton')
-
-
-
-@stop
-
-@section('custom')
-
-    <style>
-        /*.card-body{*/
-        /*height: 540px;*/
-        /*}*/
-
-
-    </style>
-
-
-    @stop
-
 
 @section('content')
 
@@ -51,7 +32,7 @@
                             @if($user->image_id)
                                 @foreach($join as $image)
                                     @if($image->id == $user->id)
-                                        <img height="150px" class="img-responsive rounded" src="{{'/images/'.$image->name}}" alt="Card image cap">
+                                        <img height="150px" class="img-responsive rounded" src="{{'/images/profile_images/'.$image->name}}" alt="Card image cap">
                                     @endif
                                 @endforeach
                             @else
@@ -63,7 +44,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('partner.show',$user->id)}}">
+                                    <a data-toggle="tooltip" data-placement="top" class="view text-capitalize" href="{{route('home.partner',$user->id)}}">
                                         {{$user->name}}
                                     </a>
                                 </h5>
@@ -73,7 +54,7 @@
                                         @if($products)
                                             @foreach($products as $product)
                                                 @if($user->id == $product->user_id)
-                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('products.show',$product->id)}}">
+                                                    <a type="button" class="btn-secondary col-md-12 small m-1 p-1"  href="{{route('home.partner',$product->user->id)}}">
                                                         <div class="row">
                                                             <span class="col-7">{{$product->name}}</span>
                                                             <span class="col-5">{{$product->created_at->diffForHumans()}}</span>

@@ -7,16 +7,17 @@
     <h1>Categories</h1>
 
     <div class="col-sm-6">
+        @include('includes.form_error')
 
-        {!! Form::model($category,['method'=>'PATCH','action'=>['AdminCategoryController@update',$category->id]]) !!}
+        {!! Form::model($category,['method'=>'PATCH','action'=>['AdminCategoryController@update',$category->id],'files'=>'true']) !!}
         <div class="form-group">
             {!! Form::label('name','Name') !!}
             {!! Form::text('name',null,['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group col-6">
-            {!! Form::label('images_id','Category Image') !!}
-            {!! Form::file('images_id',['class'=>'form-control']) !!}
+            {!! Form::label('image_id','Category Image') !!}
+            {!! Form::file('image_id',['class'=>'form-control']) !!}
         </div>
 
         <div class="row">

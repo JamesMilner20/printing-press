@@ -187,9 +187,18 @@ class AdminPostsController extends Controller
 
         $categories = Categories::all();
 
+        foreach ($product->ratings as $review){
+
+            $rateable_id = $review->rateable_id;
+        }
+
+        $reviews = DB::table('comments')->join('ratings','comments.id','=','ratings.comment_id')
+            ->select('comments.author','comments.photo','comments.body', 'ratings.rating','ratings.created_at')->get();
+
+
 //        $replies = dd($comments->replies)->whereIsActive(1)->get();
 
-        return view('posts',compact('product','comments','replies','categories','rateable'));
+        return view('posts',compact('product','comments','replies','categories','rateable','reviews'));
 
 
 

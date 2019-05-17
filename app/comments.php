@@ -30,5 +30,11 @@ class comments extends Model
 
     }
 
+    public function rating(){
+
+        return $this->belongsTo('App\Ratings');
+
+    }
+
 
 }

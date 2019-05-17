@@ -3,9 +3,9 @@
 @section('navButton')
 
     <ul class="navbar-nav mt-2 mt-lg-0">
-        <li class="nav-item active">
-        <a class="nav-link btn btn-info btn-sm mr-2" href="{{route('users.show',$user->id)}}">View Profile<span class="sr-only">(current)</span></a>
-        </li>
+        {{--<li class="nav-item active">--}}
+        {{--<a class="nav-link btn btn-info btn-sm mr-2" href="{{route('users.show',$user->id)}}">View Profile<span class="sr-only">(current)</span></a>--}}
+        {{--</li>--}}
         {{--<li class="nav-item dropdown">--}}
         {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
         {{--Dropdown--}}
@@ -86,15 +86,17 @@
                                 {!! Form::text('profession',null,['class'=>'form-control']) !!}
                             </div>
 
-                            <div class="form-group col-3">
-                                {!! Form::label('role_id','Role') !!}
-                                {!! Form::select('role_id',[''=>'Choose Options'] + $roles ,null,['class'=>'form-control']) !!}
-                            </div>
+                            @if(Auth::user()->id == 1)
+                                <div class="form-group col-3">
+                                    {!! Form::label('role_id','Role') !!}
+                                    {!! Form::select('role_id',[''=>'Choose Options'] + $roles ,null,['class'=>'form-control']) !!}
+                                </div>
 
-                            <div class="form-group col-3">
-                                {!! Form::label('isActive','Status') !!}
-                                {!! Form::select('isActive',array(1=>'Active',0=>'Not Active'),null,['class'=>'form-control']) !!}
-                            </div>
+                                <div class="form-group col-3">
+                                    {!! Form::label('isActive','Status') !!}
+                                    {!! Form::select('isActive',array(1=>'Active',0=>'Not Active'),null,['class'=>'form-control']) !!}
+                                </div>
+                            @endif
 
                             <div class="form-group col-6">
                                 {!! Form::label('image_id','Profile Image') !!}
@@ -150,7 +152,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::submit('Add User',['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Save',['class'=>'btn btn-primary']) !!}
                         </div>
                         {!! Form::close() !!}
 

@@ -35,25 +35,24 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-top-links">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">Company Name </a>
+            <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">
+                <img class="rounded-circle d-inline-block align-top" src="../img/logo.png" width="30" height="30" alt=""> Kanfa Grafix
+            </a>
+            <!-- Brand and toggle get grouped for better mobile display -->
 
-            </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse"  data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                 <ul class="navbar-nav ml-auto text-center main-nav">
 
                     <li class="nav-item">
                         <a class="nav-link @yield('active')" href="{{route('about')}}">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @yield('service')" href="#">Services </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @yield('contact')" href="#">Contact </a>
+                        <a class="nav-link @yield('contact')" href="#">Partners </a>
                     </li>
                 {{--</ul>--}}
 
@@ -83,6 +82,7 @@
                                     <a class="dropdown-item" href="{{url('/admin')}}" >
                                         Admin Dashboard
                                     </a>
+                                    <a class="dropdown-item" href="{{route('users.edit',Auth::user()->id)}}">{{ Auth::user()->name }}</a>
 
                                 @elseif(Auth::user()->role_id == 2 )
 
@@ -90,8 +90,8 @@
                                         Partner Dashboard
                                     </a>
 
+                                    <a class="dropdown-item" href="{{route('partner.edit',Auth::user()->id)}}">{{ Auth::user()->name }}</a>
                                 @endif
-                                <a class="dropdown-item" href="">{{ Auth::user()->name }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

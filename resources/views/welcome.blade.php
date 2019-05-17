@@ -11,9 +11,9 @@
     <header class="masthead">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary text-uppercase js-scroll-trigger" href="bookings\booking.php">Book now for 10% discount</a>
+                {{--<div class="intro-lead-in">Welcome To Our Studio!</div>--}}
+                {{--<div class="intro-heading text-uppercase">It's Nice To Meet You</div>--}}
+                {{--<a class="btn btn-primary text-uppercase js-scroll-trigger" href="bookings\booking.php">Book now for 10% discount</a>--}}
             </div>
         </div>
     </header>
@@ -24,7 +24,7 @@
             <div class="row text-center">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">Here are some service categories we do</h3>
+                    <h3 class="section-subheading text-muted">Click any category below to view jobs done under that section.</h3>
                 </div>
 
                 @if(count($categories) > 0)
@@ -33,7 +33,7 @@
 
                         <div class="col-lg-3 col-sm-6 mt-2">
                             <div class="card my-3 my-lg-0">
-                                <img class="card-img-top" src="images/1555082502man3.jpg" class="img-fluid w-100" alt="Card image cap">
+                                {{--<img class="card-img-top" src="images/1555082502man3.jpg" class="img-fluid w-100" alt="Card image cap">--}}
                                 <div class="card-body bg-gray text-center">
                                     <h5 class="card-title"><a href="{{route('home.category',$category->id)}}">{{$category->name}}</a></h5>
                                 </div>
@@ -54,8 +54,8 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Items Produced</h2>
-                    <h3 class="section-subheading text-muted">Here are some items we have printed</h3>
+                    <h2 class="section-heading text-uppercase">Designs by Various Designers</h2>
+                    <h3 class="section-subheading text-muted">We have printed these.</h3>
                 </div>
 
                         @if(count($products) > 0)
@@ -107,6 +107,52 @@
             </div>
         </div>
     </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 @stop

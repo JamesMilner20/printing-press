@@ -40,6 +40,42 @@
                         </div>
 
                         <div class="form-group row">
+                            <div class="col-md-4 text-md-right">
+                                <label class="form-check-label col-form-label " for="exampleRadios1">
+                                    User
+                                </label>
+                                <input class="" type="radio" name="role_id" id="exampleRadios1" value="3" checked>
+
+                            </div>
+
+                            <div class="col-md-4 text-md-center">
+                                <label class="form-check-label col-form-label " for="exampleRadios2">
+                                    Designer
+                                </label>
+                                <input class="" type="radio" name="role_id" id="exampleRadios2" value="2">
+                            </div>
+                        </div>
+
+                        <div id="designer" style="display: none;">
+
+                            <div class="form-group row">
+                                <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autocomplete="profession">
+
+                                    @if ($errors->has('profession'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('profession') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

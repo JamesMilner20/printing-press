@@ -10,6 +10,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class UserPartnerController extends Controller
 {
@@ -152,7 +153,7 @@ class UserPartnerController extends Controller
 
         $user->update($input);
 
-        return redirect('/users/partner');
+        return redirect()->back();
 
 
     }
