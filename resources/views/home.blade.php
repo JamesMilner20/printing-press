@@ -1,5 +1,11 @@
 @extends('layouts.blog-home')
 
+@section('title')
+
+    Home
+
+@stop
+
 @section('home')
 
     active
@@ -48,14 +54,21 @@
     @endif
 
     <!-- Pager -->
-    <ul class="pagination">
-        <li class="previous page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="next page-item">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-    </ul>
+
+    <div class="row">
+        <div class="col-sm-6 col-offset-sm-5">
+            {{$products->render()}}
+        </div>
+    </div>
+
+    {{--<ul class="pagination">--}}
+        {{--<li class="previous page-item">--}}
+            {{--<a class="page-link" href="#">&larr; Older</a>--}}
+        {{--</li>--}}
+        {{--<li class="next page-item">--}}
+            {{--<a class="page-link" href="#">Newer &rarr;</a>--}}
+        {{--</li>--}}
+    {{--</ul>--}}
 
 
 

@@ -1,5 +1,10 @@
 @extends('layouts.blog-post')
 
+@section('title')
+
+    Post ({{$product->name}})
+
+@stop
 
 
 @section('content')
@@ -32,7 +37,7 @@
         <!-- Preview Image -->
         <div class="card">
             <div class="card-body">
-                @if(! @guest)
+{{--                @if(! @guest)--}}
                 <ul class="justify-content-center list-inline">
                     @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
                         <li class="list-inline-item">
@@ -47,7 +52,7 @@
                                 </a>
                             </li>
                     @endif
-                    @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
+                    @if(Auth::user()->id == $product->user_id )
                         <li class="list-inline-item">
                             <a class="" data-toggle="tooltip" data-placement="top" title="Review" href="{{route('comments.index',$product->id)}}">
                                 <i class="fa fa-comment-alt"> Review Comments</i>
@@ -55,7 +60,7 @@
                         </li>
                     @endif
                 </ul>
-                @endif
+                {{--@endif--}}
                 <div class="owl-carousel owl-theme" data-toggle="modal" data-target="#exampleModal">
                     @if($product->images)
                         @foreach($product->images as $image)
@@ -122,12 +127,12 @@
                         <!-- Comment -->
                             <div class=" panel p-3 m-3 border-dark border rounded">
                                 <div class="row">
-                                    <div class="col-3 m-0 text-center">
+                                    <div class="col-4 m-0 text-center">
                                             <img height="64px" class="rounded-circle " src="{{$comment->photo ? '/images/profile_images/'.$comment->photo : '/images/profile_images/noImage.png'}}" alt="">
                                         <h4 class="panel-heading">{{$comment->author}}</h4>
                                     </div>
 
-                                    <div class="col-9 m-0 pl-0">
+                                    <div class="col-8 m-0 pl-0">
                                         <div class="panel-body">
 
                                             <p>{{$comment->body}}</p>
@@ -160,11 +165,11 @@
                                                 <!-- Nested Comment -->
                                                 <div class="panel p-2 m-2 border-dark border rounded">
                                                     <div class="row">
-                                                        <div class="col-3 m-0 text-center">
+                                                        <div class="col-4 m-0 text-center">
                                                             <img height="64px" class="rounded-circle" src="{{$reply->photo ? '/images/profile_images/'.$reply->photo : '/images/profile_images/noImage.png'}}" alt="">
                                                             <h4 class="panel-heading">{{$reply->author}}</h4>
                                                         </div>
-                                                        <div class="col-9 m-0 pl-0">
+                                                        <div class="col-8 m-0 pl-0">
                                                             <div class="panel-body">
                                                                     {{--<small><p>{{$reply->updated_at->diffForHumans()}}</p></small>--}}
 

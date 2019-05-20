@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Printing Press') }}</title>
+    <title>{{ config('Kanfa Grafix', 'Printing Press') }}</title>
 
 
 

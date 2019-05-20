@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+
+    About-us
+
+@stop
+
 @section('active')
 
     active

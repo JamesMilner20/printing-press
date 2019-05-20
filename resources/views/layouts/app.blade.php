@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Kanfa Grafix - @yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
@@ -35,7 +35,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark" role="navigation">
         <div class="container">
             <a class="navbar-brand nav-link @yield('land')" href="{{url('/')}}">
-                <img class="rounded-circle d-inline-block align-top" src="img/logo.png" width="30" height="30" alt=""> Kanfa Grafix
+                <img class="rounded-circle d-inline-block align-top" src="../img/logo.png" width="30" height="30" alt=""> Kanfa Grafix
             </a>
             <!-- Brand and toggle get grouped for better mobile display -->
 

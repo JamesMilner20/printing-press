@@ -1,6 +1,10 @@
 @extends('layouts.blog-post')
 
+@section('title')
 
+    search
+
+@stop
 
 @section('content')
 

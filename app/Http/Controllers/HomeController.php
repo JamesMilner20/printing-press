@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Products::whereIsActive(1)->orderBy('created_at','desc')->get();
+        $products = Products::whereIsActive(1)->orderBy('created_at','desc')->paginate(4);
 
         $categories = Categories::all();
 

@@ -1,5 +1,15 @@
 @extends('layouts.blog-home')
 
+@section('title')
+
+    @foreach($category as $name)
+
+        Category ({{$name->name}})
+
+    @endforeach
+
+@stop
+
 @section('content')
 
     @if(count($category) > 0)

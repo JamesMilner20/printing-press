@@ -1,5 +1,18 @@
 @extends('layouts.blog-home')
 
+@section('title')
+
+    @foreach($user as $name)
+
+
+        Partner ({{$name->name}})
+
+    @endforeach
+
+
+@stop
+
+
 @section('content')
 
     @foreach($user as $name)

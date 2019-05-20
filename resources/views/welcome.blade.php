@@ -6,13 +6,19 @@
 
     @stop
 
+@section('title')
+
+    Welcome
+
+@stop
+
 @section('content')
 
     <header class="masthead">
         <div class="container">
             <div class="intro-text">
-                {{--<div class="intro-lead-in">Welcome To Our Studio!</div>--}}
-                {{--<div class="intro-heading text-uppercase">It's Nice To Meet You</div>--}}
+                <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-heading text-uppercase">It's Great To Have You Here</div>
                 {{--<a class="btn btn-primary text-uppercase js-scroll-trigger" href="bookings\booking.php">Book now for 10% discount</a>--}}
             </div>
         </div>
