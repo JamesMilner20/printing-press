@@ -56,6 +56,11 @@
 
     });
 
+    $('#markasread').click(function() {
+        // e.preventDefault();
+       $.get('/markAsRead');
+    });
+
 
 
 

@@ -45,7 +45,7 @@
             </button>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+            <ul class="collapse navbar-collapse" id="navbarToggleExternalContent">
                 <ul class="navbar-nav ml-auto text-center main-nav">
 
                     <li class="nav-item">
@@ -66,8 +66,26 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @endif
+                        @endguest
+
                     @else
+                        <li class="nav-item dropdown dropdown-slide" id="markasread">
+                            <a class="nav-link dropdown-toggle @yield('home')"  role="button" data-toggle="dropdown">
+                                <span class="fa fa-globe-africa"></span> Notification <span class="badge badge-light">{{count(auth()->user()->unreadNotifications)}}</span>
+                            </a>
+
+                            <div class="dropdown-menu">
+                                {{--<li>--}}
+                                @forelse(auth()->user()->unreadNotifications as $notification)
+                                    @include('layouts.partials.'.snake_case(class_basename($notification->type)))
+                                    {{--<a href="#">{{snake_case(class_basename($notifications->type))}}</a>--}}
+                                @empty
+                                    <a class="dropdown-item" href="#">No Unread Notification</a>
+                                @endforelse
+                                {{--</li>--}}
+                            </div>
+                        </li>
+
                         <li class="nav-item dropdown dropdown-slide">
                             <a class="nav-link dropdown-toggle @yield('home')" href="{{url('/home')}}" role="button" data-toggle="dropdown">
                                 Home <span class="caret"></span>
@@ -103,7 +121,7 @@
                                 </form>
                             </div>
                         </li>
-                        @endguest
+                    @endif
                 </ul>
 
             </div>

@@ -37,7 +37,7 @@
         <!-- Preview Image -->
         <div class="card">
             <div class="card-body">
-{{--                @if(! @guest)--}}
+                @if(! @guest)
                 <ul class="justify-content-center list-inline">
                     @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
                         <li class="list-inline-item">
@@ -60,7 +60,7 @@
                         </li>
                     @endif
                 </ul>
-                {{--@endif--}}
+                @endif
                 <div class="owl-carousel owl-theme" data-toggle="modal" data-target="#exampleModal">
                     @if($product->images)
                         @foreach($product->images as $image)
@@ -132,12 +132,26 @@
                                         <h4 class="panel-heading">{{$comment->author}}</h4>
                                     </div>
 
-                                    <div class="col-8 m-0 pl-0">
+                                    <div class="col-7 m-0 pl-0">
                                         <div class="panel-body">
 
                                             <p>{{$comment->body}}</p>
                                             <small class="text-muted pull-right">{{$comment->created_at->diffForHumans()}}</small>
                                         </div>
+                                    </div>
+                                    <div class="col-1">
+
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary btn-sm rounded-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     @if(! @guest)
                                     @if(Auth::user()->id == $product->user_id && $product->user->role->id == 1)
@@ -268,7 +282,6 @@
                             @endif
 
                             <div class="form-group">
-                                {!! Form::label('body') !!}
                                 {!! Form::textarea('body',null,['class'=>'form-control','rows'=>3]) !!}
                             </div>
 

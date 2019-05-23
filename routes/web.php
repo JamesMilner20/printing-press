@@ -33,6 +33,12 @@ Route::get('/authors/{user}', 'UserPartnerController@show')->name('author.show')
 
 //Route::get('/companies/{company}', 'CompanyController@show')->name('companies.show');
 
+Route::get('/markAsRead', function (){
+
+    Auth()->user()->unreadNotifications->markAsRead();
+
+});
+
 
 Route::group(['middleware'=>'Admin'], function(){
 

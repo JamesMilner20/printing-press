@@ -130,6 +130,10 @@ $("input[type='radio']").change(function () {
     $("#designer").hide();
   }
 });
+$('#markasread').click(function () {
+  // e.preventDefault();
+  $.get('/markAsRead');
+});
 
 /***/ }),
 

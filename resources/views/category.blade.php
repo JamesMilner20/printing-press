@@ -68,15 +68,15 @@
 
     @endif
 
-    <!-- Pager -->
-    <ul class="pagination">
-        <li class="previous page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="next page-item">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-    </ul>
+    {{--<!-- Pager -->--}}
+    {{--<ul class="pagination">--}}
+        {{--<li class="previous page-item">--}}
+            {{--<a class="page-link" href="#">&larr; Older</a>--}}
+        {{--</li>--}}
+        {{--<li class="next page-item">--}}
+            {{--<a class="page-link" href="#">Newer &rarr;</a>--}}
+        {{--</li>--}}
+    {{--</ul>--}}
 
 
 

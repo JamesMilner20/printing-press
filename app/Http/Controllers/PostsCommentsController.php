@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\comments;
+use App\Notifications\RepliedToPost;
 use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Comment;
 
 class PostsCommentsController extends Controller
 {
@@ -68,6 +70,12 @@ class PostsCommentsController extends Controller
 
         $product->ratings()->save($rating);
 
+        if ($comment->author !== $product->user->name){
+
+            $product->user->notify(new RepliedToPost($product));
+
+        }
+
         $request->session()->flash('comment flash','Your comment has been posted');
 
         return redirect()->back();
@@ -101,6 +109,12 @@ class PostsCommentsController extends Controller
     public function edit($id)
     {
         //
+
+        $comment = Comment::findOrFail($id);
+
+
+
+        return view('admin.comments.show',compact('comments'));
     }
 
     /**
