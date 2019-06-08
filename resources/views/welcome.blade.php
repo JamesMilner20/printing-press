@@ -60,8 +60,8 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Designs by Various Designers</h2>
-                    <h3 class="section-subheading text-muted">We have printed these.</h3>
+                    <h2 class="section-heading text-uppercase">We worked on these designs</h2>
+                    <h3 class="section-subheading text-muted">Designs were our partner designers</h3>
                 </div>
 
                         @if(count($products) > 0)

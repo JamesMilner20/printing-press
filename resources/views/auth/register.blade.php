@@ -62,24 +62,24 @@
                             </div>
                         </div>
 
-                        <div id="designer" style="display: none;">
+                        {{--<div id="designer" style="display: none;">--}}
 
-                            <div class="form-group row">
-                                <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>--}}
 
-                                <div class="col-md-6">
-                                    <input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autocomplete="profession">
+                                {{--<div class="col-md-6">--}}
+                                    {{--<input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autocomplete="profession">--}}
 
-                                    @if ($errors->has('profession'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('profession') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                                    {{--@if ($errors->has('profession'))--}}
+                                        {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('profession') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
 
-                        </div>
+                        {{--</div>--}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
